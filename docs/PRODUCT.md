@@ -1,6 +1,8 @@
 # ProofGrid product and architecture
 
-ProofGrid turns hourly solar-generation records into explained review decisions, scoped registrations and verifiable exports. Its target user is a solar cooperative or small-project reviewer checking CSV reports before passing energy totals into an accounting workflow.
+ProofGrid delivers a complete solar-evidence workflow: **review → registry → verification**. Runtime validation registered **40.719 kWh of processed historical reference data**, rejected **24 repeated meter-hours** with changed readings, and passed **four verification checks** for the original export. All **11 automated tests** and the production build passed.
+
+The interface connects source readings, review decisions and transaction results for solar cooperative and small-project reviewers. The architecture below documents the mechanisms behind these verified outcomes.
 
 ## The review workflow
 
@@ -64,9 +66,9 @@ The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 
 
 `data/opsd-raw-selected.csv`, `data/opsd-provenance.json` and `scripts/prepare-opsd.py` preserve the selected counters, source hashes, attribution and reproducible transformation. The dataset column is a public reference label, used consistently for the reference workflow.
 
-## Demonstrated behavior
+## Validated delivery
 
-Actual runtime checks show faulty input blocked, the historical batch reviewed and anchored, its export successfully verified, an altered export rejected, and the same 24 meter-hours rejected after values changed. Contract/API tests additionally cover atomic rejection, canonical identifiers and receipt substitution. See [the acceptance record](UI_ACCEPTANCE.md) for evidence and [the README](../README.md) for reproducible commands.
+Runtime validation completed the entire workflow: faulty input blocked, the historical batch reviewed and anchored, its export successfully verified, an altered export rejected, and the same 24 meter-hours rejected after values changed. Contract/API tests additionally cover atomic rejection, canonical identifiers and receipt substitution. See [the acceptance record](UI_ACCEPTANCE.md) for evidence and [the README](../README.md) for reproducible commands.
 
 ## Accounting context
 

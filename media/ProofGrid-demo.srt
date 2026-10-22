@@ -1,191 +1,175 @@
 1
-00:00:00,000 --> 00:00:02,267
-Clean energy deserves clear evidence.
+00:00:00,000 --> 00:00:06,403
+We built ProofGrid to turn solar reports into evidence reviewers can trace and test.
 
 2
-00:00:02,267 --> 00:00:09,520
-When two plausible solar reports cover the same meter and hour, a spreadsheet can count both.
+00:00:06,403 --> 00:00:15,549
+The working application registered a published historical solar reference: twenty four hours totaling forty point seven one nine kilowatt hours.
 
 3
-00:00:09,520 --> 00:00:14,507
-ProofGrid catches that conflict before the records enter renewable energy accounting.
+00:00:15,549 --> 00:00:21,952
+It then rejected all twenty four repeated meter hours, even after the readings changed.
 
 4
-00:00:14,507 --> 00:00:24,027
-Built for small solar operators and community energy reviewers, it connects data quality, duplicate protection, and verifiable evidence in one workflow.
+00:00:21,952 --> 00:00:34,758
+For the Renewable Energy and Energy Trading track, we connected data quality, atomic registration, and verifiable exports in one workflow for small solar operators and community energy reviewers.
 
 5
-00:00:24,027 --> 00:00:29,468
-This is our entry for the Renewable Energy and Energy Trading track.
+00:00:34,758 --> 00:00:42,792
+We brought the energy profile, candidate total, raw readings, and quality findings into a single review workspace.
 
 6
-00:00:29,468 --> 00:00:36,368
-Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV.
+00:00:42,792 --> 00:00:51,771
+The input format uses a meter identifier, a supplied capacity bound, and hourly energy values in a simple CSV.
 
 7
-00:00:36,368 --> 00:00:42,282
-Every row represents one UTC hour and its energy in kilowatt hours.
+00:00:51,771 --> 00:00:54,606
+Each timestamp identifies one UTC hour.
 
 8
-00:00:42,282 --> 00:00:49,182
-The workspace brings the energy profile, candidate total, raw readings, and quality findings together.
+00:00:54,606 --> 00:01:03,585
+Reviewers can connect a chart peak to its underlying reading and check the relevant finding in the same interface.
 
 9
-00:00:49,182 --> 00:00:55,589
-Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs.
+00:01:03,585 --> 00:01:08,784
+Synthetic examples and published historical data demonstrate this consistent review process.
 
 10
-00:00:55,589 --> 00:01:03,968
-Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
+00:01:08,784 --> 00:01:14,588
+We implemented explainable checks that turn data problems into specific findings.
 
 11
-00:01:03,968 --> 00:01:07,519
-Watch what happens with a faulty report.
+00:01:14,588 --> 00:01:22,502
+The faulty synthetic sample produces three blocking issues, and the batch cannot proceed to registration.
 
 12
-00:01:07,519 --> 00:01:13,099
-One reading exceeds the supplied capacity, and another repeats an hour.
+00:01:22,502 --> 00:01:29,888
+Capacity, repeated timestamps, continuity, formatting, and nonnegative energy checks establish a clear input contract.
 
 13
-00:01:13,099 --> 00:01:17,665
-ProofGrid identifies the exact problems and blocks the batch.
+00:01:29,888 --> 00:01:34,637
+A separate peak comparison flags values for reviewer attention.
 
 14
-00:01:17,665 --> 00:01:22,230
-Clear explanations give the reviewer an actionable correction path.
+00:01:34,637 --> 00:01:44,134
+This distinction keeps blocking rules explicit while supporting informed human judgement on readings that deserve a closer look.
 
 15
-00:01:22,230 --> 00:01:27,303
-The validation also checks formatting, continuity, and nonnegative energy values.
+00:01:44,134 --> 00:01:52,089
+We transformed published Open Power System Data and CoSSMic cumulative readings into a traceable hourly solar reference.
 
 16
-00:01:27,303 --> 00:01:35,927
-An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
+00:01:52,089 --> 00:02:03,321
+Its twenty four nominal intervals total forty point seven one nine kilowatt hours, with a peak of seven point nine eight one kilowatt hours.
 
 17
-00:01:35,927 --> 00:01:41,716
-Now load our historical reference from Open Power System Data and CoSSMic.
+00:02:03,321 --> 00:02:08,936
+The repository preserves the selected counters, transformation code, attribution, and file hashes.
 
 18
-00:01:41,716 --> 00:01:47,987
-Twenty four nominal hourly values total forty point seven one nine kilowatt hours.
+00:02:08,936 --> 00:02:16,424
+The interface links the resulting readings to their published source and configured ten kilowatt review setting.
 
 19
-00:01:47,987 --> 00:01:56,187
-The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible.
+00:02:16,424 --> 00:02:18,764
+Regeneration produced identical data hashes.
 
 20
-00:01:56,187 --> 00:02:03,905
-The screen connects these readings to their published source and the configured ten kilowatt review setting.
+00:02:18,764 --> 00:02:26,313
+We connected the review decision to an actual Solidity transaction on a local Ethereum Virtual Machine.
 
 21
-00:02:03,905 --> 00:02:09,616
-After reviewing the profile and any warnings, the reviewer confirms the batch.
+00:02:26,313 --> 00:02:33,862
+The contract records the evidence digest and reserves the meter hour slots in one atomic operation.
 
 22
-00:02:09,616 --> 00:02:14,851
-ProofGrid executes a real transaction on a local Ethereum Virtual Machine.
+00:02:33,862 --> 00:02:38,109
+The demonstrated batch receives a successful block two receipt.
 
 23
-00:02:14,851 --> 00:02:21,514
-Our Solidity contract records the evidence digest and reserves the meter hour slots atomically.
+00:02:38,109 --> 00:02:45,658
+Source classification, readings, and verification specifications are committed together, linking the reviewed content to its transaction.
 
 24
-00:02:21,514 --> 00:02:27,701
-The resulting receipt connects the reviewed dataset to a specific transaction and block.
+00:02:45,658 --> 00:02:51,792
+This creates an inspectable registration record that reviewers can export and check again.
 
 25
-00:02:27,701 --> 00:02:31,984
-Source classification, readings, and verification specifications are committed together.
+00:02:51,792 --> 00:02:59,986
+We validated duplicate protection by changing the supplied readings and submitting the same twenty four meter hours again.
 
 26
-00:02:31,984 --> 00:02:40,074
-Reviewers can inspect exactly which evidence was registered and use its receipt to check that registration again.
+00:02:59,986 --> 00:03:04,993
+All twenty four occupied slots were detected, and registration was blocked.
 
 27
-00:02:40,074 --> 00:02:46,853
-Next, we change the supplied readings and try the same twenty four meter hours again.
+00:03:04,993 --> 00:03:11,366
+The changed file could not register those hours a second time in this registry.
 
 28
-00:02:46,853 --> 00:02:51,825
-All twenty four occupied slots are detected, and registration is blocked.
+00:03:11,366 --> 00:03:21,382
+At the contract level, an automated test submits an overlapping transaction, confirms a reverted receipt, and verifies that no partial registration remains.
 
 29
-00:02:51,825 --> 00:02:58,604
-Changing the file does not create fresh capacity to claim those hours in this registry.
+00:03:21,382 --> 00:03:25,934
+The enforcement holds across both the interface and contract execution.
 
 30
-00:02:58,604 --> 00:03:09,450
-The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
+00:03:25,934 --> 00:03:33,456
+We delivered a portable JSON evidence package and verified the original against four checks.
 
 31
-00:03:09,450 --> 00:03:14,102
-Export the accepted evidence as a portable JSON package.
+00:03:33,456 --> 00:03:39,366
+After one reading was altered, the content check identified the mismatch.
 
 32
-00:03:14,102 --> 00:03:17,720
-The original passes content and transaction verification.
+00:03:39,366 --> 00:03:46,888
+Verification combines a recomputed digest, registry identity, on-chain registration, and the successful receipt event.
 
 33
-00:03:17,720 --> 00:03:21,856
-Now alter a reading: the content check fails.
+00:03:46,888 --> 00:03:54,410
+The interface makes each result visible, connecting the exported content to its registration evidence.
 
 34
-00:03:21,856 --> 00:03:29,609
-ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event.
+00:03:54,410 --> 00:04:00,320
+A separate command-line verifier reproduces the content-integrity check outside the application.
 
 35
-00:03:29,609 --> 00:03:35,295
-Reviewers get a clear result and can see which check failed.
+00:04:00,320 --> 00:04:08,460
+ProofGrid delivers an implemented, tested path from solar readings to registered and verifiable evidence.
 
 36
-00:03:35,295 --> 00:03:42,015
-A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
-
-37
-00:03:42,015 --> 00:03:49,592
-ProofGrid delivers a complete path from a solar CSV to a verifiable evidence package.
-
-38
-00:03:49,592 --> 00:03:55,546
-The working interface brings analysis, review, registration, export, and verification together.
-
-39
-00:03:55,546 --> 00:04:03,665
-The historical example records twenty four hours and forty point seven one nine kilowatt hours.
-
-40
-00:04:03,665 --> 00:04:09,078
-Repeated hours are blocked, and an edited reading is detected.
-
-41
-00:04:09,078 --> 00:04:16,114
+00:04:08,460 --> 00:04:16,018
 Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity.
 
+37
+00:04:16,018 --> 00:04:25,321
+The demonstrated workflow records twenty four meter hours, blocks repeated registration, and detects an edited export.
+
+38
+00:04:25,321 --> 00:04:29,391
+Four verification checks make the result inspectable.
+
+39
+00:04:29,391 --> 00:04:36,368
+Published code, traceable source data, and documented commands make these results reproducible.
+
+40
+00:04:36,368 --> 00:04:37,531
+Review completed.
+
+41
+00:04:37,531 --> 00:04:38,693
+Evidence registered.
+
 42
-00:04:16,114 --> 00:04:21,527
-Four verification checks connect each export to its registered evidence.
+00:04:38,693 --> 00:04:39,856
+Verification delivered.
 
 43
-00:04:21,527 --> 00:04:28,563
-The code, data preparation, and verification commands are available to reproduce these results.
-
-44
-00:04:28,563 --> 00:04:29,104
-Review.
-
-45
-00:04:29,104 --> 00:04:29,645
-Register.
-
-46
-00:04:29,645 --> 00:04:30,187
-Verify.
-
-47
-00:04:30,187 --> 00:04:31,269
+00:04:39,856 --> 00:04:41,019
 One hour.
 
-48
-00:04:31,269 --> 00:04:32,352
+44
+00:04:41,019 --> 00:04:42,182
 One record.

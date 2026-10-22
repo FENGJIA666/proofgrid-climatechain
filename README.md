@@ -2,21 +2,21 @@
 
 **Good energy. Clear evidence.**
 
-Turn hourly solar data into a reviewable, tamper-evident record. ProofGrid brings explainable quality checks, smart-contract meter-hour registration and evidence verification into one complete review-to-verification workflow.
+**Built and validated the complete solar-evidence workflow:** registered **24 hours of processed historical solar data totaling 40.719 kWh**, rejected **all 24 repeated meter-hours** after their readings changed, and verified the original export with **four evidence checks**.
 
 **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy Trading.**
 
-Reviewers catch conflicting reports, inspect a historical solar sample, anchor the reviewed batch on a real local EVM, and verify the exported evidence—all in one workflow.
+ProofGrid gives reviewers one traceable sequence from source readings to an explained decision, an executed registration and a portable evidence package.
 
-| Demonstrated capability | Observed result |
-|---|---|
-| Quality review | Faulty synthetic input blocked with three explained issues |
-| Historical reference | 24 nominal hours, 40.719 kWh, traceable OPSD / CoSSMic source |
-| Duplicate protection | 24 occupied meter-hours rejected even after readings changed |
-| Evidence verification | Original package passes all four checks; altered reading fails |
-| Reproducibility | Eleven automated tests, production build and documented run commands |
+| Delivered capability | Verified result | Reviewer value |
+|---|---|---|
+| Explainable quality review | Faulty synthetic input blocked with three identified issues | Pinpoint records to correct before registration |
+| Contract-enforced period registration | All 24 repeated meter-hours rejected after readings changed | Check period reuse, alongside file integrity |
+| Four-check verification | Original export passes all checks; altered reading is detected | See which content or receipt check determines the result |
+| Reproducible historical reference | 24 nominal hours, 40.719 kWh, published OPSD / CoSSMic source | Trace the total to source counters and conversion code |
+| Tested delivery | All 11 automated tests and the production build pass | Re-run documented checks and inspect saved evidence |
 
-[Read the project story](docs/DEVPOST_STORY.md) · [See local acceptance evidence](docs/UI_ACCEPTANCE.md) · [Explore the design](docs/PRODUCT.md)
+[Read the project story](docs/DEVPOST_STORY.md) · [See acceptance evidence](docs/UI_ACCEPTANCE.md) · [Inspect the architecture](docs/PRODUCT.md)
 
 ## Run locally
 

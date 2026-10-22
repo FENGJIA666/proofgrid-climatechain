@@ -16,7 +16,7 @@ Date: 22 October 2026 (SGT). The refreshed interface was checked in the actual a
 
 Fresh anchor digest: `0xe36638217d197878f3fe0a1870730ae3ff320325c4049d9d504430f3e8caa373`. The original proof passed all four displayed verification checks.
 
-The final run of all eleven automated tests and the production build passed, including structured provenance classification and payload binding.
+All eleven automated tests and the production build passed for the application code used by this delivery, including structured provenance classification and payload binding. This presentation revision changes narrative and video content; the recorded application checks remain those of the verified code revision.
 
 The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This exercises the package content-integrity check. Contract/API adversarial checks covered normalized meter identifiers, duplicate and overlapping slots, atomic transaction rollback, reviewer acknowledgement, and tampered content or receipt metadata.
 
@@ -24,4 +24,4 @@ The offline verifier was also run against both JSON examples: original exit 0 / 
 
 ## Video verification
 
-The file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 272.417914 seconds (4:32.4), 6,416,344 bytes. It meets the required 180–300 second duration. Full decoding passed. Representative frames at 112 seconds and 250 seconds passed visual inspection. SHA-256: `487ad1c9bdfe521edbcca71bb7a9dfcb2fa0929970de1d552327fb3989c9215c`. The video follows the 553-word, eight-chapter narration recorded in `docs/DEMO_SCRIPT.md`.
+The file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 282.269369 seconds (4:42.3), 6,860,652 bytes. It meets the required 180–300 second duration. Full decoding passed, and the subtitles match the complete 570-word narration. SHA-256: `455d54f7cf56537576224eeaeb5b5a5841b7d25b1e4b983d17e46cac33a7560f`. Its eight chapters follow the delivered workflow documented in `docs/DEMO_SCRIPT.md`.

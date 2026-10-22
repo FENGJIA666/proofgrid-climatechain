@@ -8,7 +8,7 @@ regular='/System/Library/Fonts/Supplemental/Arial.ttf';bold='/System/Library/Fon
 def font(n,b=False):return ImageFont.truetype(bold if b else regular,n)
 chapters=json.loads((ROOT/'media/narration.json').read_text())
 shots=['ui-01-overview.png','ui-01-overview.png','ui-02-flagged.png','ui-03-historical.png','ui-04-anchored.png','ui-07-duplicate.png','ui-06-tampered.png','ui-08-registry.png']
-points=[['Catch repeated hours','Review renewable records','One evidence workflow'],['CSV to clear findings','Profile + raw readings','Fast reviewer orientation'],['Find exact issues','Block faulty batches','Transparent rules'],['OPSD / CoSSMic','40.719 kWh reference','Reproducible source trail'],['Human review checkpoint','Actual EVM execution','Inspectable receipt'],['Changed file, same slots','24 conflicts detected','Atomic contract guard'],['Original proof: passes','Edited reading: fails','Four visible checks'],['11 tests · 4 checks','24 protected meter-hours','40.719 kWh recorded']]
+points=[['40.719 kWh registered','24 repeated hours blocked','Complete evidence workflow'],['Profile + raw readings','Explained quality findings','Connected review decisions'],['3 blocking issues found','Faulty batch rejected','Actionable correction path'],['OPSD / CoSSMic reference','24 traceable intervals','Identical regenerated hashes'],['Reviewed data committed','Actual local EVM receipt','Atomic slot registration'],['24 conflicts detected','Changed readings rejected','No partial registration'],['Original: 4 checks passed','Edited reading detected','Portable evidence package'],['11 automated tests passed','Complete workflow delivered','Reproducible results']]
 subtitles=[];elapsed=0;clips=[]
 def stamp(sec):
  ms=round(sec*1000);return f'{ms//3600000:02}:{ms//60000%60:02}:{ms//1000%60:02},{ms%1000:03}'
@@ -29,7 +29,7 @@ for i,c in enumerate(chapters):
    for line in textwrap.wrap(p,23):d.text((70,y),line,font=font(25),fill='#c0d0d4');y+=34
    y+=24
   shotname=shots[i]
-  if i==6 and j<2:shotname='ui-05-verified.png'
+  if i==6 and j<1:shotname='ui-05-verified.png'
   img=Image.open(ROOT/'evidence'/shotname).convert('RGB')
   
   # Zoom into the relevant application panel; retain original screenshots separately.

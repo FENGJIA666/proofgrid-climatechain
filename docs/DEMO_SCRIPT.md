@@ -8,64 +8,64 @@ Screen: Workspace overview and the repeated meter-hour problem.
 
 Narration:
 
-Clean energy deserves clear evidence. When two plausible solar reports cover the same meter and hour, a spreadsheet can count both. ProofGrid catches that conflict before the records enter renewable energy accounting. Built for small solar operators and community energy reviewers, it connects data quality, duplicate protection, and verifiable evidence in one workflow. This is our entry for the Renewable Energy and Energy Trading track.
+We built ProofGrid to turn solar reports into evidence reviewers can trace and test. The working application registered a published historical solar reference: twenty four hours totaling forty point seven one nine kilowatt hours. It then rejected all twenty four repeated meter hours, even after the readings changed. For the Renewable Energy and Energy Trading track, we connected data quality, atomic registration, and verifiable exports in one workflow for small solar operators and community energy reviewers.
 
-## 02 — Review in one workspace
+## 02 — One workspace. Clear decisions.
 
 Screen: Workspace input, energy profile, candidate total and raw readings.
 
 Narration:
 
-Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV. Every row represents one UTC hour and its energy in kilowatt hours. The workspace brings the energy profile, candidate total, raw readings, and quality findings together. Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs. Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
+We brought the energy profile, candidate total, raw readings, and quality findings into a single review workspace. The input format uses a meter identifier, a supplied capacity bound, and hourly energy values in a simple CSV. Each timestamp identifies one UTC hour. Reviewers can connect a chart peak to its underlying reading and check the relevant finding in the same interface. Synthetic examples and published historical data demonstrate this consistent review process.
 
-## 03 — Catch problems early
+## 03 — Three faults. Clear corrections.
 
 Screen: Faulty synthetic sample with explained blocking issues.
 
 Narration:
 
-Watch what happens with a faulty report. One reading exceeds the supplied capacity, and another repeats an hour. ProofGrid identifies the exact problems and blocks the batch. Clear explanations give the reviewer an actionable correction path. The validation also checks formatting, continuity, and nonnegative energy values. An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
+We implemented explainable checks that turn data problems into specific findings. The faulty synthetic sample produces three blocking issues, and the batch cannot proceed to registration. Capacity, repeated timestamps, continuity, formatting, and nonnegative energy checks establish a clear input contract. A separate peak comparison flags values for reviewer attention. This distinction keeps blocking rules explicit while supporting informed human judgement on readings that deserve a closer look.
 
-## 04 — Trace the data source
+## 04 — Traceable source data
 
 Screen: Historical OPSD sample, 40.719 kWh total and configured review setting.
 
 Narration:
 
-Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen connects these readings to their published source and the configured ten kilowatt review setting.
+We transformed published Open Power System Data and CoSSMic cumulative readings into a traceable hourly solar reference. Its twenty four nominal intervals total forty point seven one nine kilowatt hours, with a peak of seven point nine eight one kilowatt hours. The repository preserves the selected counters, transformation code, attribution, and file hashes. The interface links the resulting readings to their published source and configured ten kilowatt review setting. Regeneration produced identical data hashes.
 
-## 05 — Make review traceable
+## 05 — Reviewed. Registered.
 
 Screen: Confirmed EVM transaction, evidence digest and block receipt.
 
 Narration:
 
-After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. Source classification, readings, and verification specifications are committed together. Reviewers can inspect exactly which evidence was registered and use its receipt to check that registration again.
+We connected the review decision to an actual Solidity transaction on a local Ethereum Virtual Machine. The contract records the evidence digest and reserves the meter hour slots in one atomic operation. The demonstrated batch receives a successful block two receipt. Source classification, readings, and verification specifications are committed together, linking the reviewed content to its transaction. This creates an inspectable registration record that reviewers can export and check again.
 
-## 06 — Stop repeat registration
+## 06 — 24 repeated hours blocked
 
 Screen: Same-slot re-import rejection after changed readings.
 
 Narration:
 
-Next, we change the supplied readings and try the same twenty four meter hours again. All twenty four occupied slots are detected, and registration is blocked. Changing the file does not create fresh capacity to claim those hours in this registry. The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
+We validated duplicate protection by changing the supplied readings and submitting the same twenty four meter hours again. All twenty four occupied slots were detected, and registration was blocked. The changed file could not register those hours a second time in this registry. At the contract level, an automated test submits an overlapping transaction, confirms a reverted receipt, and verifies that no partial registration remains. The enforcement holds across both the interface and contract execution.
 
-## 07 — Evidence that checks out
+## 07 — Four checks. Verifiable evidence.
 
 Screen: Original verification followed by detection of an altered reading.
 
 Narration:
 
-Export the accepted evidence as a portable JSON package. The original passes content and transaction verification. Now alter a reading: the content check fails. ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event. Reviewers get a clear result and can see which check failed. A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
+We delivered a portable JSON evidence package and verified the original against four checks. After one reading was altered, the content check identified the mismatch. Verification combines a recomputed digest, registry identity, on-chain registration, and the successful receipt event. The interface makes each result visible, connecting the exported content to its registration evidence. A separate command-line verifier reproduces the content-integrity check outside the application.
 
-## 08 — Delivered and verified
+## 08 — Built. Tested. Reproducible.
 
 Screen: Evidence registry and delivered verification results.
 
 Narration:
 
-ProofGrid delivers a complete path from a solar CSV to a verifiable evidence package. The working interface brings analysis, review, registration, export, and verification together. The historical example records twenty four hours and forty point seven one nine kilowatt hours. Repeated hours are blocked, and an edited reading is detected. Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity. Four verification checks connect each export to its registered evidence. The code, data preparation, and verification commands are available to reproduce these results. Review. Register. Verify. One hour. One record.
+ProofGrid delivers an implemented, tested path from solar readings to registered and verifiable evidence. Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity. The demonstrated workflow records twenty four meter hours, blocks repeated registration, and detects an edited export. Four verification checks make the result inspectable. Published code, traceable source data, and documented commands make these results reproducible. Review completed. Evidence registered. Verification delivered. One hour. One record.
 
 ## Recording format
 
-The eight chapters contain 553 words. The rendered video uses H.264/AAC at 1920×1080 and runs 272.417914 seconds (4:32.4). Runtime checks and artifact verification are recorded in [the acceptance record](UI_ACCEPTANCE.md).
+The eight chapters contain 570 words. The rendered video uses H.264/AAC at 1920×1080 and runs 282.269369 seconds (4:42.3). Runtime checks and artifact verification are recorded in [the acceptance record](UI_ACCEPTANCE.md).

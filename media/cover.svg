@@ -6,15 +6,16 @@
 <text x="178" y="135" fill="#e8f1ef" font-family="Arial,sans-serif" font-size="36" font-weight="700">PROOFGRID</text>
 <text x="90" y="310" fill="#e8f1ef" font-family="Arial,sans-serif" font-size="88" font-weight="700">One solar hour.</text>
 <text x="90" y="420" fill="#c6f267" font-family="Arial,sans-serif" font-size="88" font-weight="700">One traceable record.</text>
-<text x="94" y="506" fill="#abc2c9" font-family="Arial,sans-serif" font-size="30">Inspect generation. Catch overlaps. Verify the evidence.</text>
+<text x="94" y="506" fill="#abc2c9" font-family="Arial,sans-serif" font-size="30">Blocked repeat claims. Verified registered evidence.</text>
 <g font-family="Arial,sans-serif">
 <rect x="90" y="630" width="370" height="190" rx="24" fill="#16303a" stroke="#36515b"/>
-<text x="120" y="681" fill="#8dabb5" font-size="20">01 / REVIEW</text><text x="120" y="733" fill="#edf4ef" font-size="31">Solar meter data</text><text x="120" y="778" fill="#abc2c9" font-size="22">Explainable quality checks</text>
+<text x="120" y="681" fill="#8dabb5" font-size="20">01 / REVIEW</text><text x="120" y="733" fill="#edf4ef" font-size="31">Detect input faults</text><text x="120" y="778" fill="#abc2c9" font-size="22">Explainable quality checks</text>
 <path d="M478 725h42m-12-10 12 10-12 10" stroke="#c6f267" stroke-width="3" fill="none"/>
 <rect x="550" y="630" width="370" height="190" rx="24" fill="#16303a" stroke="#36515b"/>
-<text x="580" y="681" fill="#8dabb5" font-size="20">02 / REGISTER</text><text x="580" y="733" fill="#edf4ef" font-size="29">Smart-contract records</text><text x="580" y="778" fill="#abc2c9" font-size="22">Unique meter-hour claims</text>
+<text x="580" y="681" fill="#8dabb5" font-size="20">02 / REGISTER</text><text x="580" y="733" fill="#edf4ef" font-size="29">Protect meter-hours</text><text x="580" y="778" fill="#abc2c9" font-size="22">Unique meter-hour claims</text>
 <path d="M938 725h42m-12-10 12 10-12 10" stroke="#c6f267" stroke-width="3" fill="none"/>
 <rect x="1010" y="630" width="400" height="190" rx="24" fill="#c6f267"/>
-<text x="1040" y="681" fill="#46652b" font-size="20">03 / VERIFY</text><text x="1040" y="733" fill="#10251e" font-size="31">Portable evidence</text><text x="1040" y="778" fill="#35502f" font-size="22">Tampering becomes visible</text>
-<text x="90" y="920" fill="#8dabb5" font-size="22">IEEE ClimateChain 2026 · Renewable Energy &amp; Energy Trading</text>
+<text x="1040" y="681" fill="#46652b" font-size="20">03 / VERIFY</text><text x="1040" y="733" fill="#10251e" font-size="28">Verify exported evidence</text><text x="1040" y="778" fill="#35502f" font-size="22">Tampering becomes visible</text>
+<text x="90" y="875" fill="#c6f267" font-size="24" font-weight="700">11 tests passed · 4 evidence checks · 24 protected meter-hours</text>
+<text x="90" y="945" fill="#8dabb5" font-size="22">IEEE ClimateChain 2026 · Renewable Energy &amp; Energy Trading</text>
 </g></svg>
