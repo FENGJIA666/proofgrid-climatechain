@@ -10,7 +10,7 @@ ProofGrid is a pre-review tool, not a renewable-energy certificate issuer. It ch
 
 Use Node.js 20 or later and npm. No wallet, paid RPC or token purchase is needed. The application starts an in-process Ganache EVM and deploys its Solidity contract automatically.
 
-The intended public repository is `FENGJIA666/proofgrid-climatechain`; publication is pending as of this documentation update. Once it is available, clone it with:
+Public source: [FENGJIA666/proofgrid-climatechain](https://github.com/FENGJIA666/proofgrid-climatechain). Clone it with:
 
 ```sh
 git clone https://github.com/FENGJIA666/proofgrid-climatechain.git
@@ -95,4 +95,4 @@ A future pilot would compare results with an operator's source records and measu
 
 AI agents assisted research, implementation, documentation and adversarial review, coordinated by a manager with a separate opposition reviewer. They are not human team members. Only recorded checks support acceptance claims; simulated examples are labelled.
 
-The Devpost entry remains a draft at this update. Public repository creation, final video-link verification, attachment and final submission are pending. See `docs/REQUIREMENTS.md`, `docs/PRODUCT.md`, `docs/DEVPOST_DRAFT.md` and `docs/DEMO_SCRIPT.md` for scope and delivery details.
+The Devpost entry remains a draft at this update. The public source repository is available. Final video-link verification, attachment and final submission are pending. See `docs/PRODUCT.md`, `docs/DEVPOST_STORY.md`, `docs/DEMO_SCRIPT.md` and `docs/UI_ACCEPTANCE.md` for scope and delivery details.
