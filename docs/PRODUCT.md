@@ -36,7 +36,7 @@ flowchart LR
     EXPORT --> VERIFY[Hash and receipt verification]
 ```
 
-The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` validates inputs and builds the ordered evidence payload. `server/chain.js` compiles Solidity with solc and connects ethers to an in-process Ganache EVM. `EnergyRegistry.sol` atomically records commitments and meter-hour occupancy. Verification checks the payload hash, current registry and transaction event, including receipt metadata.
+The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` validates inputs and builds the ordered evidence payload with structured provenance. `server/chain.js` compiles Solidity with solc and connects ethers to an in-process Ganache EVM. `EnergyRegistry.sol` atomically records commitments and meter-hour occupancy. Verification checks the payload hash, current registry and transaction event, including receipt metadata.
 
 ## Technical specification
 
@@ -44,7 +44,7 @@ The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` v
 |---|---|
 | CSV schema | `timestamp,kwh`; 1–168 continuous, strictly increasing UTC hourly records |
 | Energy representation | Nonnegative interval kWh, at most three decimals; total stored as integer Wh |
-| Interval convention | Each timestamp labels a fixed one-hour interval; arbitrary intervals and direct cumulative-counter imports are outside the format |
+| Interval convention | Each timestamp labels a fixed one-hour interval; historical-fixture preparation differences cumulative source counters before import |
 | Meter label | Canonical trimmed uppercase identifier, 3–32 letters/digits/hyphens; supplied by the user |
 | Capacity | User-supplied kW value; one-hour kWh compared with this bound |
 | Batch decision | Blocking errors reject the complete batch; warnings prompt explicit review |
@@ -53,7 +53,7 @@ The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` v
 | Evidence commitment | SHA-256 of the ordered JSON payload produced by `payloadFor`; preserve exported field order |
 | Verification | Content, current contract, registered digest and matching receipt/event metadata |
 | Local runtime | Loopback port 4187; session-local chain and state; no wallet extension or paid RPC needed |
-| Proof meaning | Commitment and local registration of supplied evidence; physical source authentication belongs to the source-enrollment layer |
+| Proof meaning | Commitment and local registration of supplied evidence; authenticated source enrollment is a planned integration milestone |
 | Accounting role | Evidence preparation for renewable-energy workflows; formal certificate issuance remains with established systems |
 
 ## Data demonstration
@@ -62,7 +62,7 @@ Two labelled synthetic examples exercise clean input and deliberate faults. A se
 
 The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 kWh**, with a **7.981 kWh** peak. Its 10 kW capacity is an explicit review assumption. The transformation differences adjacent published cumulative readings. OPSD uses hourly `.last()` resampling with left labels, giving the derived intervals approximately one-minute boundary displacement. The publisher's data includes gap filling; none of the selected rows marks this PV column as interpolated.
 
-`data/opsd-raw-selected.csv`, `data/opsd-provenance.json` and `scripts/prepare-opsd.py` preserve the selected counters, source hashes, attribution and reproducible transformation. The dataset column is a public reference label, rather than a physically enrolled meter identity.
+`data/opsd-raw-selected.csv`, `data/opsd-provenance.json` and `scripts/prepare-opsd.py` preserve the selected counters, source hashes, attribution and reproducible transformation. The dataset column is a public reference label, used consistently for the reference workflow.
 
 ## Demonstrated behavior
 

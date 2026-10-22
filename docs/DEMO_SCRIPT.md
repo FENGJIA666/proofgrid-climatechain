@@ -1,12 +1,12 @@
 # ProofGrid demonstration script
 
-Status: revised value-led video independently accepted. The final candidate is 262.214512 seconds (4:22.2), H.264/AAC at 1920×1080, 6,333,382 bytes. Full decoding and representative chapter-frame inspection passed. Public playback and final submission remain separate pending stages.
+Recorded video verification: the current rendered candidate is 261.824626 seconds (4:21.8), H.264/AAC at 1920×1080, 6,272,551 bytes. Full decoding and representative chapter-frame inspection passed. Public playback and final submission remain separate pending stages.
 
-`media/narration.json` contains eight segments and 542 English words. Rendering uses 142 words per minute; the final encoded video must remain 180–300 seconds. The edit uses actual local acceptance screens and synthetic narration.
+`media/narration.json` contains eight segments and 541 English words. Rendering uses 142 words per minute; the final encoded video must remain 180–300 seconds. The edit uses actual local acceptance screens and synthetic narration.
 
-## Editing and evidence
+## Presentation structure
 
-The demonstration leads with the reviewer problem, visible workflow outcomes and the technical role of each feature. Synthetic examples and processed historical data remain distinguished; local EVM execution and prospective rollout are stated accurately. Source context, identity boundaries and certificate limits are retained in the technical documentation and visible interface. No AI model, field deployment, certificate issuance or measured emissions savings are claimed.
+The demonstration leads with the reviewer problem, visible workflow outcomes and the technical role of each feature. Each chapter connects an action to its result. The workflow uses synthetic validation examples, a processed historical reference, real local EVM transactions and a concrete adoption roadmap.
 
 ## 01 — One hour. One record.
 
@@ -22,7 +22,7 @@ Screen: Actual workspace with CSV, profile, source and review controls.
 
 Narration:
 
-Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV. Every row represents one UTC hour and its energy in kilowatt hours. The workspace brings the generation profile, candidate total, raw readings, and quality findings together. Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs. Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
+Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV. Every row represents one UTC hour and its energy in kilowatt hours. The workspace brings the energy profile, candidate total, raw readings, and quality findings together. Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs. Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
 
 ## 03 — Catch problems early
 
@@ -34,11 +34,11 @@ Watch what happens with a faulty report. One reading exceeds the supplied capaci
 
 ## 04 — Trace the data source
 
-Screen: Actual OPSD review: 24 hours, 40.719 kWh, source/capacity caveats.
+Screen: Actual OPSD review: 24 hours, 40.719 kWh, source/capacity information.
 
 Narration:
 
-Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and assumed ten kilowatt capacity, so reviewers can assess the evidence in context.
+Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and ten kilowatt demonstration setting, so reviewers can assess the evidence in context.
 
 ## 05 — Make review traceable
 
@@ -70,8 +70,8 @@ Screen: Actual evidence registry with its accepted registration; prospective pil
 
 Narration:
 
-ProofGrid turns scattered renewable energy records into an inspectable review trail. Nine automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step.
+ProofGrid turns scattered renewable energy records into an inspectable review trail. Automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step.
 
 ## Final acceptance
 
-The final candidate passed ffprobe duration/codec/dimension checks, full decoding and independent representative frame inspection. The final chapter uses the accepted registry view with its adoption roadmap. SHA-256: `adc72aa5922e62adb44ab874981e6b8d32aecb7a30a19af534fd318b8da4181f`. Public upload/playback and final Devpost submission remain separate pending stages. The required file attachment is limited to 35 MB.
+The recorded candidate passed ffprobe duration/codec/dimension checks, full decoding and independent representative frame inspection. The final chapter uses the accepted registry view with its adoption roadmap. SHA-256: `f2321504ca0b31fb34d054f77502118259c4a173e193861da7d73ab02e46e44a`. Public upload/playback and final Devpost submission remain separate pending stages. The required file attachment is limited to 35 MB.

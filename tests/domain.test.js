@@ -9,3 +9,21 @@ test('rejects gaps and unsorted rows',()=>{const gap='timestamp,kwh\n2026-10-21T
 test('rejects unit confusion, malformed meters, invalid capacity',()=>{assert.throws(()=>analyze('timestamp,watts\n2026-10-21T00:00:00Z,1','METER-001',5));assert.throws(()=>analyze(sample(),' meter ',5));assert.throws(()=>analyze(sample(),'METER-001',Infinity));});
 test('changing one reading changes evidence digest',()=>{const b={...clean(),meter:'METER-001',capacity:5,source:'synthetic demonstration'};const p=payloadFor(b),digest=sha256(p);p.readings[5].kwh=1;assert.notEqual(sha256(p),digest);});
 test('same meter-hour has stable slot, other hours and meters are distinct',()=>{assert.equal(slotId('A','2026-10-21T00:00:00Z'),slotId('A','2026-10-21T00:00:00Z'));assert.notEqual(slotId('A','2026-10-21T00:00:00Z'),slotId('A','2026-10-21T01:00:00Z'));assert.notEqual(slotId('A','2026-10-21T00:00:00Z'),slotId('B','2026-10-21T00:00:00Z'));});
+
+test('source classification is bound to CSV contents, not claimed labels',async()=>{
+ const {classifySource}=await import('../server/domain.js');
+ const historical='timestamp,kwh\n2016-06-01T00:00:00Z,0.1\n2016-06-01T01:00:00Z,0.2\n';
+ assert.equal(classifySource(historical,historical).category,'historical-reference');
+ assert.equal(classifySource(historical.replaceAll('\n','\r\n'),historical).category,'historical-reference');
+ const changed=classifySource(historical.replace(',0.2',',0.3'),historical);
+ assert.equal(changed.category,'user-supplied');
+ assert.notEqual(changed.contentSha256,classifySource(historical,historical).contentSha256);
+ assert.equal(classifySource(sample(),historical).category,'synthetic');
+ assert.equal(classifySource(sample('flagged'),historical).fixture,'flagged');
+});
+test('source and structured scope fields are committed in v2 payload',()=>{
+ const batch={...clean(),meter:'METER-001',capacity:5,source:{category:'synthetic',label:'Synthetic demonstration'}};
+ const p=payloadFor(batch);assert.equal(p.schema,'proofgrid-evidence-v2');
+ const digest=sha256(p);
+ for(const mutate of [x=>x.source.category='historical-reference',x=>x.verificationScope.checks.push('extra'),x=>x.registryScope.boundary='other registry',x=>x.sessionLifecycle.runtime='other network']){const copy=structuredClone(p);mutate(copy);assert.notEqual(sha256(copy),digest);}
+});

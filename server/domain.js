@@ -31,8 +31,32 @@ export function analyze(csv, meter, capacity) {
   if(positives.length>=6 && positives.at(-1)>median*4) issues.push({row:null,type:'outlier',severity:'review',message:'Peak exceeds 4× the median positive reading. Inspect the source before approving.'});
   return {rows,issues,totalWh,peak:Math.max(0,...rows.map(r=>r.kwh)),start:rows[0]?.timestamp,end:rows.at(-1)?.timestamp};
 }
+export function classifySource(csv, historicalCsv) {
+  const normalize = value => value.replace(/\r\n/g, '\n').trim() + '\n';
+  const normalized = normalize(csv);
+  const contentSha256 = createHash('sha256').update(normalized).digest('hex');
+  if (normalized === normalize(historicalCsv)) return {
+    category: 'historical-reference', label: 'OPSD · processed historical reference',
+    reference: 'Open Power System Data / CoSSMic', version: '2020-04-15',
+    url: 'https://data.open-power-system-data.org/household_data/2020-04-15/',
+    license: 'CC-BY-4.0', processing: 'Adjacent differences of published cumulative counters; nominal hourly boundaries.',
+    classification: 'Exact normalized CSV match to the bundled reference', contentSha256
+  };
+  for (const kind of ['clean', 'flagged']) if (normalized === normalize(sample(kind))) return {
+    category: 'synthetic', label: 'Synthetic demonstration', fixture: kind,
+    classification: 'Exact normalized CSV match to the bundled fixture', contentSha256
+  };
+  return {category: 'user-supplied', label: 'User-supplied readings', classification: 'Imported CSV', contentSha256};
+}
 export function payloadFor(batch) {
-  return {schema:'proofgrid-evidence-v1',meter:batch.meter,capacityKw:batch.capacity,intervalMinutes:60,timezone:'UTC',source:batch.source,readings:batch.rows,totalWh:batch.totalWh,method:'hourly-capacity-and-continuity-v1'};
+  return {
+    schema: 'proofgrid-evidence-v2', meter: batch.meter, capacityKw: batch.capacity,
+    intervalMinutes: 60, timezone: 'UTC', source: batch.source,
+    readings: batch.rows, totalWh: batch.totalWh, method: 'hourly-capacity-and-continuity-v1',
+    verificationScope: {checks: ['payload integrity', 'registration in the current session']},
+    registryScope: {meterKey: 'normalized meter identifier', intervalKey: 'UTC hour', interval: '[start, start + 60 minutes)', boundary: 'one deployed registry contract'},
+    sessionLifecycle: {runtime: 'local EVM', initialization: 'a new chain and registry for each server process'}
+  };
 }
 export function sample(kind='clean') {
   const values=[0,0,0,0,0,0,0.12,0.8,1.7,2.8,3.9,4.5,4.8,4.4,3.8,2.6,1.5,0.6,0.1,0,0,0,0,0];

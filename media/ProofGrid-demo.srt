@@ -19,145 +19,145 @@ Built for small solar operators and community energy reviewers, it connects data
 This is our entry for the Renewable Energy and Energy Trading track.
 
 6
-00:00:29,468 --> 00:00:36,426
+00:00:29,468 --> 00:00:36,368
 Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV.
 
 7
-00:00:36,426 --> 00:00:42,390
+00:00:36,368 --> 00:00:42,282
 Every row represents one UTC hour and its energy in kilowatt hours.
 
 8
-00:00:42,390 --> 00:00:49,348
-The workspace brings the generation profile, candidate total, raw readings, and quality findings together.
+00:00:42,282 --> 00:00:49,182
+The workspace brings the energy profile, candidate total, raw readings, and quality findings together.
 
 9
-00:00:49,348 --> 00:00:55,809
+00:00:49,182 --> 00:00:55,589
 Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs.
 
 10
-00:00:55,809 --> 00:01:04,258
+00:00:55,589 --> 00:01:03,968
 Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
 
 11
-00:01:04,258 --> 00:01:07,809
+00:01:03,968 --> 00:01:07,519
 Watch what happens with a faulty report.
 
 12
-00:01:07,809 --> 00:01:13,389
+00:01:07,519 --> 00:01:13,099
 One reading exceeds the supplied capacity, and another repeats an hour.
 
 13
-00:01:13,389 --> 00:01:17,955
+00:01:13,099 --> 00:01:17,665
 ProofGrid identifies the exact problems and blocks the batch.
 
 14
-00:01:17,955 --> 00:01:22,521
+00:01:17,665 --> 00:01:22,230
 Clear explanations give the reviewer an actionable correction path.
 
 15
-00:01:22,521 --> 00:01:27,594
+00:01:22,230 --> 00:01:27,303
 The validation also checks formatting, continuity, and nonnegative energy values.
 
 16
-00:01:27,594 --> 00:01:36,218
+00:01:27,303 --> 00:01:35,927
 An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
 
 17
-00:01:36,218 --> 00:01:42,467
+00:01:35,927 --> 00:01:42,213
 Now load our historical reference from Open Power System Data and CoSSMic.
 
 18
-00:01:42,467 --> 00:01:49,238
+00:01:42,213 --> 00:01:49,024
 Twenty four nominal hourly values total forty point seven one nine kilowatt hours.
 
 19
-00:01:49,238 --> 00:01:58,092
+00:01:49,024 --> 00:01:57,929
 The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible.
 
 20
-00:01:58,092 --> 00:02:10,070
-The screen identifies the processed historical source, approximate hourly boundaries, and assumed ten kilowatt capacity, so reviewers can assess the evidence in context.
+00:01:57,929 --> 00:02:09,978
+The screen identifies the processed historical source, approximate hourly boundaries, and ten kilowatt demonstration setting, so reviewers can assess the evidence in context.
 
 21
-00:02:10,070 --> 00:02:15,526
+00:02:09,978 --> 00:02:15,433
 After reviewing the profile and any warnings, the reviewer confirms the batch.
 
 22
-00:02:15,526 --> 00:02:20,527
+00:02:15,433 --> 00:02:20,434
 ProofGrid executes a real transaction on a local Ethereum Virtual Machine.
 
 23
-00:02:20,527 --> 00:02:26,892
+00:02:20,434 --> 00:02:26,799
 Our Solidity contract records the evidence digest and reserves the meter hour slots atomically.
 
 24
-00:02:26,892 --> 00:02:32,803
+00:02:26,799 --> 00:02:32,710
 The resulting receipt connects the reviewed dataset to a specific transaction and block.
 
 25
-00:02:32,803 --> 00:02:35,985
+00:02:32,710 --> 00:02:35,892
 A database can also check local uniqueness.
 
 26
-00:02:35,985 --> 00:02:45,078
+00:02:35,892 --> 00:02:44,985
 Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry.
 
 27
-00:02:45,078 --> 00:02:51,857
+00:02:44,985 --> 00:02:51,764
 Next, we change the supplied readings and try the same twenty four meter hours again.
 
 28
-00:02:51,857 --> 00:02:56,828
+00:02:51,764 --> 00:02:56,736
 All twenty four occupied slots are detected, and registration is blocked.
 
 29
-00:02:56,828 --> 00:03:03,608
+00:02:56,736 --> 00:03:03,515
 Changing the file does not create fresh capacity to claim those hours in this registry.
 
 30
-00:03:03,608 --> 00:03:14,454
+00:03:03,515 --> 00:03:14,361
 The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
 
 31
-00:03:14,454 --> 00:03:19,106
+00:03:14,361 --> 00:03:19,013
 Export the accepted evidence as a portable JSON package.
 
 32
-00:03:19,106 --> 00:03:22,724
+00:03:19,013 --> 00:03:22,632
 The original passes content and transaction verification.
 
 33
-00:03:22,724 --> 00:03:26,860
+00:03:22,632 --> 00:03:26,767
 Now alter a reading: the content check fails.
 
 34
-00:03:26,860 --> 00:03:34,613
+00:03:26,767 --> 00:03:34,520
 ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event.
 
 35
-00:03:34,613 --> 00:03:40,299
+00:03:34,520 --> 00:03:40,206
 Reviewers get a clear result and can see which check failed.
 
 36
-00:03:40,299 --> 00:03:47,019
+00:03:40,206 --> 00:03:46,926
 A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
 
 37
-00:03:47,019 --> 00:03:52,240
+00:03:46,926 --> 00:03:52,173
 ProofGrid turns scattered renewable energy records into an inspectable review trail.
 
 38
-00:03:52,240 --> 00:03:57,462
-Nine automated tests and the complete local workflow demonstrate the core.
+00:03:52,173 --> 00:03:56,944
+Automated tests and the complete local workflow demonstrate the core.
 
 39
-00:03:57,462 --> 00:04:07,905
+00:03:56,944 --> 00:04:07,440
 The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration.
 
 40
-00:04:07,905 --> 00:04:15,026
+00:04:07,440 --> 00:04:14,596
 Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce.
 
 41
-00:04:15,026 --> 00:04:22,147
+00:04:14,596 --> 00:04:21,752
 Open code, traceable data, and practical checks provide a concrete foundation for that next step.

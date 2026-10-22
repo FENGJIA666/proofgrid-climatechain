@@ -24,7 +24,7 @@ A database unique key can enforce uniqueness for one operator. ProofGrid explore
 
 Its contribution is the integration of explainable source-data checks, contract-enforced interval registration and repeatable export verification in a lightweight workflow. Existing energy-attribute tracking systems provide established certificate infrastructure; ProofGrid targets the evidence preparation step that can feed such systems.
 
-The implementation uses JavaScript and Vite for the workspace, Solidity for the registry, ethers for transactions, solc for compilation and Ganache for the local EVM. Reviewers can run the complete prototype without a wallet extension, paid RPC or token purchase. Operators can start from existing CSV exports containing 1–168 continuous UTC hourly records, making interval conflicts precise and understandable.
+The implementation uses JavaScript and Vite for the workspace, Solidity for the registry, ethers for transactions, solc for compilation and Ganache for the local EVM. Reviewers can run the complete prototype through a self-contained local setup. Operators can start from existing CSV exports containing 1–168 continuous UTC hourly records, making interval conflicts precise and understandable.
 
 ## A demonstration with traceable data and observable outcomes
 
@@ -36,7 +36,7 @@ The working prototype demonstrates:
 - **Real contract execution:** reviewer acknowledgement is followed by a successful local EVM transaction and receipt.
 - **Duplicate-claim rejection:** changing the supplied readings and resubmitting the same 24 meter-hour slots produces 24 occupied-slot conflicts.
 - **Tamper detection:** the original export passes verification; changing a reading makes verification fail. Adversarial checks also reject a substituted transaction receipt.
-- **Reproducibility:** nine automated tests and the production build pass, with saved runtime evidence and an offline content-checking tool.
+- **Reproducibility:** eleven automated tests and the production build pass, with saved runtime evidence and an offline content-checking tool.
 
 The demonstration follows this complete workflow. The interface also works at a 390-pixel mobile viewport without horizontal overflow.
 

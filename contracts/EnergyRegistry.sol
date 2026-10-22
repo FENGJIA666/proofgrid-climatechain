@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-/// @notice Local proof-of-concept. Issuer trust does not prove meter truth or REC eligibility.
+/// @notice Issuer-authorized local evidence commitments and atomic meter-hour registration.
 contract EnergyRegistry {
     address public immutable issuer;
     mapping(bytes32 => bool) public occupied;

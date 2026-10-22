@@ -1,26 +1,30 @@
 # Local runtime acceptance
 
-Date: 22 October 2026 (SGT). Captures were made by the manager in the actual application at port 4187. The product/documentation reviewer separately inspected the saved faulty-input, anchored and tampered-verification screens. This record does not establish external publication, physical meter validity or a production pilot.
+Date: 22 October 2026 (SGT). The refreshed interface was checked in the actual application on port 4187. All `ui-01` through `ui-09` captures and `ui-mobile` were replaced with the checked presentation. This record maps the observed local workflow to saved artifacts.
 
 | Scenario | Observed result | Saved evidence |
 |---|---|---|
 | Initial workspace | Input, review and anchoring steps displayed | `evidence/ui-01-overview.png` |
 | Faulty synthetic batch | 3 blocking issues: capacity, duplicate hour, order; no accepted anchor | `evidence/ui-02-flagged.png` |
-| OPSD reference | 24 nominal hours, 40.719 kWh total, 7.981 kWh peak; human-review warning | `evidence/ui-03-historical.png` |
-| Explicit review and anchoring | Anchored result and actual local block #2; exported payload uses unverified-input label | `evidence/ui-04-anchored.png`, `evidence/opsd-proof.json` |
+| OPSD reference | 24 nominal hours, 40.719 kWh total, 7.981 kWh peak; correct historical source label and human-review warning | `evidence/ui-03-historical.png` |
+| Explicit review and anchoring | Anchored result and fresh local block #2; v2 payload includes structured OPSD provenance | `evidence/ui-04-anchored.png`, `evidence/opsd-proof.json` |
 | Original evidence verification | All displayed integrity/registry/receipt checks pass in originating session | `evidence/ui-05-verified.png` |
-| Modified reading | A one-kWh change causes failed content check; overall verification fails | `evidence/ui-06-tampered.png`, `evidence/tampered-proof.json` |
-| Same hours, changed readings | 24 claimed meter-hour conflicts after 0.001-kWh changes; re-registration blocked | `evidence/ui-07-duplicate.png` |
-| Registry/method | Existing entry and method/limitation displays inspected | `evidence/ui-08-registry.png`, `evidence/ui-09-method.png` |
+| Modified reading | Adding 1 kWh to the 10:00 reading causes failed content check; overall verification fails | `evidence/ui-06-tampered.png`, `evidence/tampered-proof.json` |
+| Same hours, changed readings | Adding 0.001 kWh to each of 24 rows produces 24 claimed-slot conflicts plus 1 outlier warning; source becomes User-supplied and registration is blocked | `evidence/ui-07-duplicate.png` |
+| Registry/method | Existing entry and method displays inspected | `evidence/ui-08-registry.png`, `evidence/ui-09-method.png` |
 | Mobile | Manager measured viewport 390 px and scrollWidth 390 px; no horizontal overflow | `evidence/ui-mobile.png` |
 
-The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This only checks internal content integrity. Contract/API adversarial checks covered normalized meter identifiers, duplicate and overlapping slots, atomic transaction rollback, reviewer acknowledgement, and tampered content or receipt metadata.
+Fresh anchor digest: `0xe36638217d197878f3fe0a1870730ae3ff320325c4049d9d504430f3e8caa373`. The original proof passed all four displayed verification checks.
 
-`evidence/ARTIFACTS.json` records SHA-256 fingerprints of saved acceptance artifacts. The captures reflect the observed session; session-local receipts do not persist as independently accessible chain evidence after restart.
+Eleven automated tests and the build passed, including structured provenance classification and payload binding.
+
+The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This exercises the package content-integrity check. Contract/API adversarial checks covered normalized meter identifiers, duplicate and overlapping slots, atomic transaction rollback, reviewer acknowledgement, and tampered content or receipt metadata.
+
+`evidence/ARTIFACTS.json` records SHA-256 fingerprints of saved acceptance artifacts. The captures and receipts identify the originating local session.
 
 ## Local video file
 
-The revised value-led file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 262.214512 seconds (4:22.2), 6,333,382 bytes. It meets the required 180–300 second duration. Full decoding completed without errors. All eight chapters passed independent frame inspection. The final chapter displays the actual evidence registry with the adoption roadmap; its replacement frame and final file hash were independently rechecked. The prior version's QuickTime playback observation is not evidence for this replacement. Public playback and accepted Devpost video-link status are separate delivery checks.
+The current file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 261.824626 seconds (4:21.8), 6,272,551 bytes. It meets the required 180–300 second duration. Full decoding completed without errors. SHA-256: `f2321504ca0b31fb34d054f77502118259c4a173e193861da7d73ab02e46e44a`. The video uses the refreshed interface captures. Independent inspection of all eight chapter frames passed. Public playback and accepted Devpost video-link status are separate delivery checks.
 
 ## Isolated source reproduction
 

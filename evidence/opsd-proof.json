@@ -1,11 +1,21 @@
 {
   "payload": {
-    "schema": "proofgrid-evidence-v1",
+    "schema": "proofgrid-evidence-v2",
     "meter": "OPSD-RESIDENTIAL1-PV",
     "capacityKw": 10,
     "intervalMinutes": 60,
     "timezone": "UTC",
-    "source": "user-supplied, unverified",
+    "source": {
+      "category": "historical-reference",
+      "label": "OPSD · processed historical reference",
+      "reference": "Open Power System Data / CoSSMic",
+      "version": "2020-04-15",
+      "url": "https://data.open-power-system-data.org/household_data/2020-04-15/",
+      "license": "CC-BY-4.0",
+      "processing": "Adjacent differences of published cumulative counters; nominal hourly boundaries.",
+      "classification": "Exact normalized CSV match to the bundled reference",
+      "contentSha256": "e6373fb8269d80d08fd8855ba987e957f01c8d946208d8fdfa867009b3859865"
+    },
     "readings": [
       {
         "timestamp": "2016-06-01T00:00:00Z",
@@ -105,21 +115,31 @@
       }
     ],
     "totalWh": 40719,
-    "method": "hourly-capacity-and-continuity-v1"
+    "method": "hourly-capacity-and-continuity-v1",
+    "verificationScope": {
+      "checks": [
+        "payload integrity",
+        "registration in the current session"
+      ]
+    },
+    "registryScope": {
+      "meterKey": "normalized meter identifier",
+      "intervalKey": "UTC hour",
+      "interval": "[start, start + 60 minutes)",
+      "boundary": "one deployed registry contract"
+    },
+    "sessionLifecycle": {
+      "runtime": "local EVM",
+      "initialization": "a new chain and registry for each server process"
+    }
   },
   "anchor": {
-    "digest": "0x3261feb9262770c5167a9ee38ea9c0ef561b79bbe7fed8ed16a023f6963ec2d5",
-    "transactionHash": "0xa707649cc3fb9ebba7e831ad40995b83065b9066b724ab41c044bf07686c1205",
+    "digest": "0xe36638217d197878f3fe0a1870730ae3ff320325c4049d9d504430f3e8caa373",
+    "transactionHash": "0x07a5838db5219c127676e3a68a50bc92a7db025598e317212ef47b4279e8562d",
     "blockNumber": 2,
-    "contract": "0xEdB14FB2AAD79079baC1AF7949816938E6DAf18e",
+    "contract": "0x42c35FcA8F9407a272F18d27af762b3C6E2c1a90",
     "chainId": 1337,
     "network": "local-ephemeral",
-    "issuer": "0x6D2589a83Ece4d88Bc126EB31Ee875647a7B11B3"
-  },
-  "limitations": [
-    "Synthetic samples are not measured generation.",
-    "Anchoring proves registration and integrity, not physical truth.",
-    "Uniqueness is only for this registry and canonical meter identifier.",
-    "Local chain resets when the server restarts. No formal REC or carbon credit is issued."
-  ]
+    "issuer": "0x2207783aF0d6516045ea7FdF313E15d61e94e702"
+  }
 }

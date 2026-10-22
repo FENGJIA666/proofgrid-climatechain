@@ -3,7 +3,8 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
 import { createChain } from './chain.js';
-import { analyze, sample, payloadFor, sha256, slotId } from './domain.js';
+import { analyze, sample, payloadFor, sha256, slotId, classifySource } from './domain.js';
+const historicalCsv=await readFile(new URL('../data/opsd-solar-2016-06-01.csv',import.meta.url),'utf8');
 const chain=await createChain(), batches=new Map(),anchors=[];
 const production=process.env.NODE_ENV==='production';
 const vite=production?null:await (await import('vite')).createServer({server:{middlewareMode:true},appType:'spa'});
@@ -13,12 +14,12 @@ const server=http.createServer(async(req,res)=>{
  try{
  const url=new URL(req.url,'http://localhost');
  if(url.pathname==='/api/status')return json(res,200,{chainId:1337,address:chain.address,network:'Local EVM · session only',anchors,batches:[...batches.values()]});
- if(url.pathname==='/api/historical'){res.writeHead(200,{'Content-Type':'text/csv'});return res.end(await readFile(new URL('../data/opsd-solar-2016-06-01.csv',import.meta.url),'utf8'));}
+ if(url.pathname==='/api/historical'){res.writeHead(200,{'Content-Type':'text/csv'});return res.end(historicalCsv);}
  if(url.pathname==='/api/sample'){res.writeHead(200,{'Content-Type':'text/csv'});return res.end(sample(url.searchParams.get('kind')));}
  if(url.pathname==='/api/analyze'&&req.method==='POST'){
    const b=await body(req); b.meter=String(b.meter||'').trim(); const result=analyze(b.csv,b.meter,Number(b.capacity));
    for(const r of result.rows)if(await chain.contract.occupied(slotId(b.meter,r.timestamp)))result.issues.push({row:null,type:'claimed',severity:'block',message:`${r.timestamp} is already anchored for this meter in this registry.`});
-   const batch={id:randomUUID(),meter:b.meter,capacity:Number(b.capacity),source:b.source==='synthetic'?'synthetic demonstration':'user-supplied, unverified',...result,createdAt:new Date().toISOString(),status:result.issues.some(i=>i.severity==='block')?'blocked':'ready'};
+   const batch={id:randomUUID(),meter:b.meter,capacity:Number(b.capacity),source:classifySource(b.csv,historicalCsv),...result,createdAt:new Date().toISOString(),status:result.issues.some(i=>i.severity==='block')?'blocked':'ready'};
    batches.set(batch.id,batch);return json(res,200,batch);
  }
  if(url.pathname==='/api/anchor'&&req.method==='POST'){
@@ -29,7 +30,7 @@ const server=http.createServer(async(req,res)=>{
    try {
      const payload=payloadFor(batch),digest=sha256(payload),slots=batch.rows.map(r=>slotId(batch.meter,r.timestamp));
      const tx=await chain.contract.anchor(digest,slots,batch.totalWh);const receipt=await tx.wait();
-     const proof={payload,anchor:{digest,transactionHash:tx.hash,blockNumber:receipt.blockNumber,contract:chain.address,chainId:1337,network:'local-ephemeral',issuer:await chain.signer.getAddress()},limitations:['Synthetic samples are not measured generation.','Anchoring proves registration and integrity, not physical truth.','Uniqueness is only for this registry and canonical meter identifier.','Local chain resets when the server restarts. No formal REC or carbon credit is issued.']};
+     const proof={payload,anchor:{digest,transactionHash:tx.hash,blockNumber:receipt.blockNumber,contract:chain.address,chainId:1337,network:'local-ephemeral',issuer:await chain.signer.getAddress()}};
      batch.status='anchored';batch.proof=proof;anchors.unshift({id:batch.id,meter:batch.meter,totalWh:batch.totalWh,digest,transactionHash:tx.hash,blockNumber:receipt.blockNumber});return json(res,200,batch);
    }catch(e){batch.status='ready';throw new Error('Anchor rejected: the evidence or a meter-hour may already be registered. Re-run analysis.');}
  }
@@ -43,7 +44,7 @@ const server=http.createServer(async(req,res)=>{
      const receipt=await chain.provider.getTransactionReceipt(proof.anchor.transactionHash);
      receiptValid=Boolean(proof.anchor.network==='local-ephemeral'&&receipt?.status===1&&receipt.blockNumber===proof.anchor.blockNumber&&receipt.from?.toLowerCase()===String(proof.anchor.issuer).toLowerCase()&&receipt.to?.toLowerCase()===chain.address.toLowerCase()&&receipt.logs.some(log=>{try {const event=chain.contract.interface.parseLog(log);return event?.name==='Anchored'&&event.args.digest===proof.anchor.digest&&Number(event.args.wattHours)===proof.payload.totalWh&&Number(event.args.intervals)===proof.payload.readings?.length;}catch{return false;}}));
    }
-   return json(res,200,{valid:digestMatches&&sameRegistry&&onChain&&receiptValid,digestMatches,sameRegistry,onChain,receiptValid,calculated,disclaimer:'Valid means integrity and local registration, not measured generation or independent certification.'});
+   return json(res,200,{valid:digestMatches&&sameRegistry&&onChain&&receiptValid,digestMatches,sameRegistry,onChain,receiptValid,calculated,verificationScope:'Payload integrity and registration in the current session'});
  }
  if(url.pathname.startsWith('/api/'))return json(res,404,{error:'Endpoint not found'});
  if(vite)return vite.middlewares(req,res,()=>{res.writeHead(404);res.end();});
