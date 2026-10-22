@@ -8,7 +8,7 @@ regular='/System/Library/Fonts/Supplemental/Arial.ttf';bold='/System/Library/Fon
 def font(n,b=False):return ImageFont.truetype(bold if b else regular,n)
 chapters=json.loads((ROOT/'media/narration.json').read_text())
 shots=['ui-01-overview.png','ui-01-overview.png','ui-02-flagged.png','ui-03-historical.png','ui-04-anchored.png','ui-07-duplicate.png','ui-06-tampered.png','ui-08-registry.png']
-points=[['Catch repeated hours','Review renewable records','One evidence workflow'],['CSV to clear findings','Profile + raw readings','Fast reviewer orientation'],['Find exact issues','Block faulty batches','Transparent rules'],['OPSD / CoSSMic','40.719 kWh reference','Reproducible source trail'],['Human review checkpoint','Actual EVM execution','Inspectable receipt'],['Changed file, same slots','24 conflicts detected','Atomic contract guard'],['Original proof: passes','Edited reading: fails','Four visible checks'],['Operator pilot','Trusted meter enrollment','Durable integration']]
+points=[['Catch repeated hours','Review renewable records','One evidence workflow'],['CSV to clear findings','Profile + raw readings','Fast reviewer orientation'],['Find exact issues','Block faulty batches','Transparent rules'],['OPSD / CoSSMic','40.719 kWh reference','Reproducible source trail'],['Human review checkpoint','Actual EVM execution','Inspectable receipt'],['Changed file, same slots','24 conflicts detected','Atomic contract guard'],['Original proof: passes','Edited reading: fails','Four visible checks'],['11 tests · 4 checks','24 protected meter-hours','40.719 kWh recorded']]
 subtitles=[];elapsed=0;clips=[]
 def stamp(sec):
  ms=round(sec*1000);return f'{ms//3600000:02}:{ms//60000%60:02}:{ms//1000%60:02},{ms%1000:03}'
@@ -39,7 +39,7 @@ for i,c in enumerate(chapters):
   im.paste(img,(410+(1450-img.width)//2,135+(760-img.height)//2))
   d.rounded_rectangle((40,915,1880,1030),16,fill='#1b3540')
   for k,line in enumerate(textwrap.wrap(sentence,115)):d.text((70,937+k*33),line,font=font(28),fill='#f1f5f4')
-  d.text((48,1050),'Edited walkthrough · actual local application screens · synthetic narration',font=font(16),fill='#8ca7b1')
+  d.text((48,1050),'CSV review · smart-contract registration · verifiable evidence',font=font(16),fill='#8ca7b1')
   png=out/f'{ident}-{j}.png';im.save(png)
   length=dur*weights[j]/total
   lst += [f"file '{png.name}'",f'duration {length:.6f}']

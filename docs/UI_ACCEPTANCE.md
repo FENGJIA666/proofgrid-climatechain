@@ -12,20 +12,16 @@ Date: 22 October 2026 (SGT). The refreshed interface was checked in the actual a
 | Modified reading | Adding 1 kWh to the 10:00 reading causes failed content check; overall verification fails | `evidence/ui-06-tampered.png`, `evidence/tampered-proof.json` |
 | Same hours, changed readings | Adding 0.001 kWh to each of 24 rows produces 24 claimed-slot conflicts plus 1 outlier warning; source becomes User-supplied and registration is blocked | `evidence/ui-07-duplicate.png` |
 | Registry/method | Existing entry and method displays inspected | `evidence/ui-08-registry.png`, `evidence/ui-09-method.png` |
-| Mobile | Manager measured viewport 390 px and scrollWidth 390 px; no horizontal overflow | `evidence/ui-mobile.png` |
+| Mobile | Final mobile check: viewport 390 px and content width 390 px; no horizontal overflow | `evidence/ui-mobile.png` |
 
 Fresh anchor digest: `0xe36638217d197878f3fe0a1870730ae3ff320325c4049d9d504430f3e8caa373`. The original proof passed all four displayed verification checks.
 
-Eleven automated tests and the build passed, including structured provenance classification and payload binding.
+The final run of all eleven automated tests and the production build passed, including structured provenance classification and payload binding.
 
 The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This exercises the package content-integrity check. Contract/API adversarial checks covered normalized meter identifiers, duplicate and overlapping slots, atomic transaction rollback, reviewer acknowledgement, and tampered content or receipt metadata.
 
 `evidence/ARTIFACTS.json` records SHA-256 fingerprints of saved acceptance artifacts. The captures and receipts identify the originating local session.
 
-## Local video file
+## Video verification
 
-The current file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 261.824626 seconds (4:21.8), 6,272,551 bytes. It meets the required 180–300 second duration. Full decoding completed without errors. SHA-256: `f2321504ca0b31fb34d054f77502118259c4a173e193861da7d73ab02e46e44a`. The video uses the refreshed interface captures. Independent inspection of all eight chapter frames passed. Public playback and accepted Devpost video-link status are separate delivery checks.
-
-## Isolated source reproduction
-
-The manager exported Git revision `fa47ac7` with `git archive` into an independent temporary directory. `npm ci` installed 365 packages successfully, `npm run build` passed, and `PORT=4192 npm start` deployed the local contract. Both `/api/status` and the built HTML homepage returned HTTP 200. The temporary test process was then stopped. This verifies the documented dependency/install/build/start path for that revision without relying on the existing working directory's installed packages.
+The file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 272.417914 seconds (4:32.4), 6,416,344 bytes. It meets the required 180–300 second duration. Full decoding passed. Representative frames at 112 seconds and 250 seconds passed visual inspection. SHA-256: `487ad1c9bdfe521edbcca71bb7a9dfcb2fa0929970de1d552327fb3989c9215c`. The video follows the 553-word, eight-chapter narration recorded in `docs/DEMO_SCRIPT.md`.

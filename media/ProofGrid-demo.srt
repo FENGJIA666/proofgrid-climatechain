@@ -63,101 +63,129 @@ The validation also checks formatting, continuity, and nonnegative energy values
 An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
 
 17
-00:01:35,927 --> 00:01:42,213
+00:01:35,927 --> 00:01:41,716
 Now load our historical reference from Open Power System Data and CoSSMic.
 
 18
-00:01:42,213 --> 00:01:49,024
+00:01:41,716 --> 00:01:47,987
 Twenty four nominal hourly values total forty point seven one nine kilowatt hours.
 
 19
-00:01:49,024 --> 00:01:57,929
+00:01:47,987 --> 00:01:56,187
 The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible.
 
 20
-00:01:57,929 --> 00:02:09,978
-The screen identifies the processed historical source, approximate hourly boundaries, and ten kilowatt demonstration setting, so reviewers can assess the evidence in context.
+00:01:56,187 --> 00:02:03,905
+The screen connects these readings to their published source and the configured ten kilowatt review setting.
 
 21
-00:02:09,978 --> 00:02:15,433
+00:02:03,905 --> 00:02:09,616
 After reviewing the profile and any warnings, the reviewer confirms the batch.
 
 22
-00:02:15,433 --> 00:02:20,434
+00:02:09,616 --> 00:02:14,851
 ProofGrid executes a real transaction on a local Ethereum Virtual Machine.
 
 23
-00:02:20,434 --> 00:02:26,799
+00:02:14,851 --> 00:02:21,514
 Our Solidity contract records the evidence digest and reserves the meter hour slots atomically.
 
 24
-00:02:26,799 --> 00:02:32,710
+00:02:21,514 --> 00:02:27,701
 The resulting receipt connects the reviewed dataset to a specific transaction and block.
 
 25
-00:02:32,710 --> 00:02:35,892
-A database can also check local uniqueness.
+00:02:27,701 --> 00:02:31,984
+Source classification, readings, and verification specifications are committed together.
 
 26
-00:02:35,892 --> 00:02:44,985
-Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry.
+00:02:31,984 --> 00:02:40,074
+Reviewers can inspect exactly which evidence was registered and use its receipt to check that registration again.
 
 27
-00:02:44,985 --> 00:02:51,764
+00:02:40,074 --> 00:02:46,853
 Next, we change the supplied readings and try the same twenty four meter hours again.
 
 28
-00:02:51,764 --> 00:02:56,736
+00:02:46,853 --> 00:02:51,825
 All twenty four occupied slots are detected, and registration is blocked.
 
 29
-00:02:56,736 --> 00:03:03,515
+00:02:51,825 --> 00:02:58,604
 Changing the file does not create fresh capacity to claim those hours in this registry.
 
 30
-00:03:03,515 --> 00:03:14,361
+00:02:58,604 --> 00:03:09,450
 The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
 
 31
-00:03:14,361 --> 00:03:19,013
+00:03:09,450 --> 00:03:14,102
 Export the accepted evidence as a portable JSON package.
 
 32
-00:03:19,013 --> 00:03:22,632
+00:03:14,102 --> 00:03:17,720
 The original passes content and transaction verification.
 
 33
-00:03:22,632 --> 00:03:26,767
+00:03:17,720 --> 00:03:21,856
 Now alter a reading: the content check fails.
 
 34
-00:03:26,767 --> 00:03:34,520
+00:03:21,856 --> 00:03:29,609
 ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event.
 
 35
-00:03:34,520 --> 00:03:40,206
+00:03:29,609 --> 00:03:35,295
 Reviewers get a clear result and can see which check failed.
 
 36
-00:03:40,206 --> 00:03:46,926
+00:03:35,295 --> 00:03:42,015
 A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
 
 37
-00:03:46,926 --> 00:03:52,173
-ProofGrid turns scattered renewable energy records into an inspectable review trail.
+00:03:42,015 --> 00:03:49,592
+ProofGrid delivers a complete path from a solar CSV to a verifiable evidence package.
 
 38
-00:03:52,173 --> 00:03:56,944
-Automated tests and the complete local workflow demonstrate the core.
+00:03:49,592 --> 00:03:55,546
+The working interface brings analysis, review, registration, export, and verification together.
 
 39
-00:03:56,944 --> 00:04:07,440
-The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration.
+00:03:55,546 --> 00:04:03,665
+The historical example records twenty four hours and forty point seven one nine kilowatt hours.
 
 40
-00:04:07,440 --> 00:04:14,596
-Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce.
+00:04:03,665 --> 00:04:09,078
+Repeated hours are blocked, and an edited reading is detected.
 
 41
-00:04:14,596 --> 00:04:21,752
-Open code, traceable data, and practical checks provide a concrete foundation for that next step.
+00:04:09,078 --> 00:04:16,114
+Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity.
+
+42
+00:04:16,114 --> 00:04:21,527
+Four verification checks connect each export to its registered evidence.
+
+43
+00:04:21,527 --> 00:04:28,563
+The code, data preparation, and verification commands are available to reproduce these results.
+
+44
+00:04:28,563 --> 00:04:29,104
+Review.
+
+45
+00:04:29,104 --> 00:04:29,645
+Register.
+
+46
+00:04:29,645 --> 00:04:30,187
+Verify.
+
+47
+00:04:30,187 --> 00:04:31,269
+One hour.
+
+48
+00:04:31,269 --> 00:04:32,352
+One record.

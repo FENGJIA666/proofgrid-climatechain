@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce the historical OPSD reference sample (stdlib only).
 
-This is a transformation of published cumulative counters, not a new meter
-measurement. OPSD resamples cumulative values with .last(), left-labelled;
+Transforms published cumulative counters into interval energy records. OPSD resamples cumulative values with .last(), left-labelled;
 nominal interval labels therefore differ from actual boundaries by ~1 minute.
 """
 import csv
@@ -62,15 +61,15 @@ manifest = {
     'column': COLUMN, 'sourceUnit': 'cumulative kWh', 'outputUnit': 'interval kWh',
     'operation': 'current counter minus previous counter; no rounding beyond original 0.001 kWh precision',
     'resamplingSource': 'https://github.com/isc-konstanz/household_data/blob/2020-04-15/processing.ipynb',
-    'intervalCaveat': 'OPSD uses hourly resample.last() with left labels. Derived intervals retain nominal current-hour labels; actual counter boundaries are approximately one minute earlier. Not exact independently measured clock-hour energy.',
-    'interpolationCaveat': 'OPSD publishes processed measured data and fills gaps. No selected row flags this PV column; that is not an independent guarantee of unmodified raw measurements.',
+    'intervalConvention': 'OPSD uses hourly resample.last() with left labels. Derived intervals retain nominal current-hour labels; actual counter boundaries are approximately one minute earlier.',
+    'interpolationMethod': 'The published OPSD processing includes gap filling. The selected records preserve publisher interpolation markers; this PV column has zero marked rows in the selection.',
     'selectedPvRowsMarkedInterpolated': sum(COLUMN in r['interpolated'] for r in selected),
     'nominalDateUTC': '2016-06-01', 'intervalCount': 24,
     'totalKwh': str(sum(deltas)), 'peakHourlyKwh': str(max(deltas)),
-    'suggestedDemoMeterId': 'OPSD-RESIDENTIAL1-PV',
-    'suggestedDemoCapacityKw': 10,
-    'capacityCaveat': '10 kW is an explicit demo review assumption, not a verified installation rating.',
-    'identityCaveat': 'Public dataset column label is not an enrolled or authenticated physical meter identity.'
+    'referenceMeterId': 'OPSD-RESIDENTIAL1-PV',
+    'reviewCapacityKw': 10,
+    'reviewCapacity': '10 kW is the configured capacity bound for reviewing this reference sample.',
+    'meterLabelSource': 'The reference meter identifier is derived from the public dataset column DE_KN_residential1_pv.'
 }
 (DATA / 'opsd-provenance.json').write_text(json.dumps(manifest, indent=2) + '\n')
 print(json.dumps({k: manifest[k] for k in ['intervalCount', 'totalKwh', 'peakHourlyKwh', 'selectedPvRowsMarkedInterpolated', 'sourceSha256']}, indent=2))

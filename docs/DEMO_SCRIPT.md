@@ -1,16 +1,10 @@
 # ProofGrid demonstration script
 
-Recorded video verification: the current rendered candidate is 261.824626 seconds (4:21.8), H.264/AAC at 1920×1080, 6,272,551 bytes. Full decoding and representative chapter-frame inspection passed. Public playback and final submission remain separate pending stages.
-
-`media/narration.json` contains eight segments and 541 English words. Rendering uses 142 words per minute; the final encoded video must remain 180–300 seconds. The edit uses actual local acceptance screens and synthetic narration.
-
-## Presentation structure
-
-The demonstration leads with the reviewer problem, visible workflow outcomes and the technical role of each feature. Each chapter connects an action to its result. The workflow uses synthetic validation examples, a processed historical reference, real local EVM transactions and a concrete adoption roadmap.
+The demonstration follows the complete workflow from CSV review to registered evidence and export verification. Chapters use actual application screens, labelled synthetic examples, a processed historical solar reference and EVM transaction receipts.
 
 ## 01 — One hour. One record.
 
-Screen: Overview; introduce the repeated meter-hour problem and target reviewer.
+Screen: Workspace overview and the repeated meter-hour problem.
 
 Narration:
 
@@ -18,7 +12,7 @@ Clean energy deserves clear evidence. When two plausible solar reports cover the
 
 ## 02 — Review in one workspace
 
-Screen: Actual workspace with CSV, profile, source and review controls.
+Screen: Workspace input, energy profile, candidate total and raw readings.
 
 Narration:
 
@@ -26,7 +20,7 @@ Start with a meter identifier, a supplied capacity bound, and a simple hourly CS
 
 ## 03 — Catch problems early
 
-Screen: Actual faulty synthetic sample with capacity and duplicate issues.
+Screen: Faulty synthetic sample with explained blocking issues.
 
 Narration:
 
@@ -34,23 +28,23 @@ Watch what happens with a faulty report. One reading exceeds the supplied capaci
 
 ## 04 — Trace the data source
 
-Screen: Actual OPSD review: 24 hours, 40.719 kWh, source/capacity information.
+Screen: Historical OPSD sample, 40.719 kWh total and configured review setting.
 
 Narration:
 
-Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and ten kilowatt demonstration setting, so reviewers can assess the evidence in context.
+Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen connects these readings to their published source and the configured ten kilowatt review setting.
 
 ## 05 — Make review traceable
 
-Screen: Actual confirmed local EVM transaction and block receipt.
+Screen: Confirmed EVM transaction, evidence digest and block receipt.
 
 Narration:
 
-After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. A database can also check local uniqueness. Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry.
+After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. Source classification, readings, and verification specifications are committed together. Reviewers can inspect exactly which evidence was registered and use its receipt to check that registration again.
 
 ## 06 — Stop repeat registration
 
-Screen: Actual same-slot re-import rejection after altered readings; source test covers mined revert.
+Screen: Same-slot re-import rejection after changed readings.
 
 Narration:
 
@@ -58,20 +52,20 @@ Next, we change the supplied readings and try the same twenty four meter hours a
 
 ## 07 — Evidence that checks out
 
-Screen: Actual original verification followed by edited-reading failure.
+Screen: Original verification followed by detection of an altered reading.
 
 Narration:
 
 Export the accepted evidence as a portable JSON package. The original passes content and transaction verification. Now alter a reading: the content check fails. ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event. Reviewers get a clear result and can see which check failed. A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
 
-## 08 — Adoption roadmap
+## 08 — Delivered and verified
 
-Screen: Actual evidence registry with its accepted registration; prospective pilot and registry integration roadmap.
+Screen: Evidence registry and delivered verification results.
 
 Narration:
 
-ProofGrid turns scattered renewable energy records into an inspectable review trail. Automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step.
+ProofGrid delivers a complete path from a solar CSV to a verifiable evidence package. The working interface brings analysis, review, registration, export, and verification together. The historical example records twenty four hours and forty point seven one nine kilowatt hours. Repeated hours are blocked, and an edited reading is detected. Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity. Four verification checks connect each export to its registered evidence. The code, data preparation, and verification commands are available to reproduce these results. Review. Register. Verify. One hour. One record.
 
-## Final acceptance
+## Recording format
 
-The recorded candidate passed ffprobe duration/codec/dimension checks, full decoding and independent representative frame inspection. The final chapter uses the accepted registry view with its adoption roadmap. SHA-256: `f2321504ca0b31fb34d054f77502118259c4a173e193861da7d73ab02e46e44a`. Public upload/playback and final Devpost submission remain separate pending stages. The required file attachment is limited to 35 MB.
+The eight chapters contain 553 words. The rendered video uses H.264/AAC at 1920×1080 and runs 272.417914 seconds (4:32.4). Runtime checks and artifact verification are recorded in [the acceptance record](UI_ACCEPTANCE.md).

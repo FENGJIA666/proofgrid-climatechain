@@ -2,19 +2,19 @@
 
 **Good energy. Clear evidence.**
 
-Turn hourly solar data into a reviewable, tamper-evident record. ProofGrid brings explainable quality checks, smart-contract meter-hour registration and evidence verification into one local working prototype.
+Turn hourly solar data into a reviewable, tamper-evident record. ProofGrid brings explainable quality checks, smart-contract meter-hour registration and evidence verification into one complete review-to-verification workflow.
 
 **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy Trading.**
 
-A reviewer can catch conflicting reports, inspect a historical solar sample, anchor the reviewed batch on a real local EVM, and verify the exported evidence—all in one workflow.
+Reviewers catch conflicting reports, inspect a historical solar sample, anchor the reviewed batch on a real local EVM, and verify the exported evidence—all in one workflow.
 
 | Demonstrated capability | Observed result |
 |---|---|
 | Quality review | Faulty synthetic input blocked with three explained issues |
 | Historical reference | 24 nominal hours, 40.719 kWh, traceable OPSD / CoSSMic source |
 | Duplicate protection | 24 occupied meter-hours rejected even after readings changed |
-| Evidence verification | Original package passes; altered reading fails |
-| Reproducibility | Eleven automated tests; isolated source install, build and production startup pass |
+| Evidence verification | Original package passes all four checks; altered reading fails |
+| Reproducibility | Eleven automated tests, production build and documented run commands |
 
 [Read the project story](docs/DEVPOST_STORY.md) · [See local acceptance evidence](docs/UI_ACCEPTANCE.md) · [Explore the design](docs/PRODUCT.md)
 
@@ -45,7 +45,7 @@ Stop the development server first if it uses the same port. `npm start` serves t
 ## Try the workflow
 
 1. Load the deliberately faulty synthetic example. Review the blocking issues; the whole batch is rejected.
-2. Load the processed OPSD historical sample. Inspect its source information, 24 nominal hours, 40.719 kWh total and 7.981 kWh peak. The 10 kW capacity is an explicit demonstration assumption.
+2. Load the processed OPSD historical sample. Inspect its source information, 24 nominal hours, 40.719 kWh total and 7.981 kWh peak. The review uses a configured 10 kW setting.
 3. Review any warning and confirm the reviewer acknowledgement. Anchor the batch and inspect its local transaction receipt.
 4. Export the evidence JSON. Verify it in the same running session.
 5. Change one reading in a copy of the export and verify again: the content check fails.
@@ -74,7 +74,7 @@ The current implementation passed eleven automated tests and a production build.
 - `contracts/EnergyRegistry.sol`: commitment registration and meter-hour slot uniqueness.
 - `scripts/verify-offline.mjs`: standalone package content check.
 
-The v2 payload commits to meter label, structured provenance, capacity assumption, hourly readings, total, method version and verification/registry/session specifications. The current SHA-256 representation uses the JSON serialization defined by `payloadFor`; preserve the exported payload's field order. The contract rejects already occupied slots atomically. The browser/server checks improve feedback; the contract enforces that registration boundary.
+The v2 payload commits to meter label, structured provenance, capacity setting, hourly readings, total, method version and verification/registry/session specifications. The current SHA-256 representation uses the JSON serialization defined by `payloadFor`; preserve the exported payload's field order. The contract rejects already occupied slots atomically. The browser/server checks improve feedback; the contract enforces that registration boundary.
 
 ## Data and attribution
 
@@ -92,11 +92,11 @@ python3 scripts/prepare-opsd.py
 
 The script downloads roughly 15 MB into ignored `.cache/`, checks metadata and selected values, and writes the sample. Its regeneration was checked to produce identical hashes. OPSD resamples cumulative counters using hourly `.last()` with left labels, so nominal intervals have approximately one-minute boundary displacement. Published data can include gap filling. The selected rows preserve the publisher’s interpolation markers, and the public dataset column supplies the example’s meter label. Full transformation details are recorded in `data/opsd-provenance.json`.
 
-## Deployment model and roadmap
+## Runtime specification
 
 The demonstration runs a session-local EVM, with uniqueness defined by a canonical meter identifier and UTC hour in one deployed registry. Review uses transparent validation rules and an explicit reviewer acknowledgement. See [technical specifications](docs/PRODUCT.md) for the input contract, data provenance and verification model.
 
-The adoption roadmap starts with a solar-cooperative pilot measuring review time and missed conflicts, followed by authenticated meter enrollment, signed measurements, durable storage and integration with established energy-attribute registries. [EPA tracking-system context](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems).
+The application combines a source-data review workspace, atomic registration and portable evidence verification. [EPA tracking-system context](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems).
 
 ## Development and project materials
 

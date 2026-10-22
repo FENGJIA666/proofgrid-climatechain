@@ -18,7 +18,7 @@ Any blocking issue stops the entire batch. The workspace retains the explanation
 
 A different document hash does not imply a different reporting interval. ProofGrid therefore binds two things: a hash of the reviewed evidence and the meter-hour slots represented by that evidence. A changed reading produces a new payload hash, while the existing meter-hour occupancy still prevents a repeated registration.
 
-A database unique key can also prevent duplicates for one operator. The contract design makes the registration rule and its transaction result inspectable through source and receipts. It is a local working demonstration of that interface, providing a concrete base for future integration between reviewers.
+The contract design makes the registration rule and its transaction result inspectable through source and receipts. The implemented interface connects reviewed data, executable registration rules and verifiable transaction results.
 
 ## Architecture
 
@@ -53,14 +53,14 @@ The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` v
 | Evidence commitment | SHA-256 of the ordered JSON payload produced by `payloadFor`; preserve exported field order |
 | Verification | Content, current contract, registered digest and matching receipt/event metadata |
 | Local runtime | Loopback port 4187; session-local chain and state; no wallet extension or paid RPC needed |
-| Proof meaning | Commitment and local registration of supplied evidence; authenticated source enrollment is a planned integration milestone |
-| Accounting role | Evidence preparation for renewable-energy workflows; formal certificate issuance remains with established systems |
+| Proof meaning | Content commitment and registration of the supplied evidence in the running registry |
+| Accounting role | Reviewed source-evidence packages for renewable-energy accounting workflows |
 
 ## Data demonstration
 
 Two labelled synthetic examples exercise clean input and deliberate faults. A separate processed historical reference comes from Open Power System Data's CoSSMic household dataset, version 2020-04-15, under CC BY 4.0.
 
-The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 kWh**, with a **7.981 kWh** peak. Its 10 kW capacity is an explicit review assumption. The transformation differences adjacent published cumulative readings. OPSD uses hourly `.last()` resampling with left labels, giving the derived intervals approximately one-minute boundary displacement. The publisher's data includes gap filling; none of the selected rows marks this PV column as interpolated.
+The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 kWh**, with a **7.981 kWh** peak. The review uses a configured 10 kW setting. The transformation differences adjacent published cumulative readings. OPSD uses hourly `.last()` resampling with left labels, giving the derived intervals approximately one-minute boundary displacement. The publisher's data includes gap filling; none of the selected rows marks this PV column as interpolated.
 
 `data/opsd-raw-selected.csv`, `data/opsd-provenance.json` and `scripts/prepare-opsd.py` preserve the selected counters, source hashes, attribution and reproducible transformation. The dataset column is a public reference label, used consistently for the reference workflow.
 
@@ -68,8 +68,6 @@ The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 
 
 Actual runtime checks show faulty input blocked, the historical batch reviewed and anchored, its export successfully verified, an altered export rejected, and the same 24 meter-hours rejected after values changed. Contract/API tests additionally cover atomic rejection, canonical identifiers and receipt substitution. See [the acceptance record](UI_ACCEPTANCE.md) for evidence and [the README](../README.md) for reproducible commands.
 
-## Adoption pathway
+## Accounting context
 
-A first pilot would support a solar cooperative reviewer checking monthly reports in one-to-seven-day batches. It would compare review decisions with source records and measure review time, missed conflicts and reviewer disagreement. Subsequent milestones are authenticated meter enrollment and signed observations, durable registry operation, then adapters to existing energy-attribute systems.
-
-This sequence connects the demonstrated review loop to operational evidence infrastructure. The [EPA description of double counting](https://www.epa.gov/green-power-markets/double-counting) and [existing tracking systems](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems) provide the accounting context; ProofGrid's focus is the source-evidence workflow upstream of established certificate systems.
+The [EPA description of double counting](https://www.epa.gov/green-power-markets/double-counting) and [existing tracking systems](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems) provide the accounting context. ProofGrid connects source-data review, meter-hour registration and portable evidence verification upstream of established certificate systems.

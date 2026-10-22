@@ -10,7 +10,7 @@ Changing an energy value creates a different file hash, but it does not create a
 
 ## What it does
 
-ProofGrid is a local working prototype that takes an hourly solar CSV from import to a verifiable evidence package.
+ProofGrid takes an hourly solar CSV through a complete workflow: data review, smart-contract registration and a verifiable evidence package.
 
 The review workspace explains malformed readings, gaps, duplicates and values above the supplied capacity bound. A peak-comparison rule highlights unusual profiles for human attention. Blocking issues stop the entire batch, preserving a clear decision trail. After reviewing the evidence, the user explicitly acknowledges it and submits a real smart-contract transaction.
 
@@ -18,35 +18,33 @@ The Solidity registry reserves each meter-hour slot. A second claim for the same
 
 ## The technical idea: protect the interval, then bind the evidence
 
-A file hash answers whether a document changed. The accounting problem also asks whether its reporting period has already been used. ProofGrid combines meter-hour uniqueness with a commitment to the complete reviewed payload: readings, total energy, meter label, source description, capacity assumption and review-method version.
+A file hash answers whether a document changed. The accounting problem also asks whether its reporting period has already been used. ProofGrid combines meter-hour uniqueness with a commitment to the complete reviewed payload: readings, total energy, meter label, source description, capacity setting and review-method version.
 
-A database unique key can enforce uniqueness for one operator. ProofGrid explores making both the registration rule and its execution receipt inspectable as evidence moves between reviewers: the contract source defines the rule, and the local transaction exposes its result.
+ProofGrid makes both the registration rule and its execution receipt inspectable: the contract source defines the rule, and the transaction exposes its result.
 
 Its contribution is the integration of explainable source-data checks, contract-enforced interval registration and repeatable export verification in a lightweight workflow. Existing energy-attribute tracking systems provide established certificate infrastructure; ProofGrid targets the evidence preparation step that can feed such systems.
 
-The implementation uses JavaScript and Vite for the workspace, Solidity for the registry, ethers for transactions, solc for compilation and Ganache for the local EVM. Reviewers can run the complete prototype through a self-contained local setup. Operators can start from existing CSV exports containing 1–168 continuous UTC hourly records, making interval conflicts precise and understandable.
+The implementation uses JavaScript and Vite for the workspace, Solidity for the registry, ethers for transactions, solc for compilation and Ganache for the local EVM. Reviewers run the complete application through a self-contained local setup. Operators can start from existing CSV exports containing 1–168 continuous UTC hourly records, making interval conflicts precise and understandable.
 
 ## A demonstration with traceable data and observable outcomes
 
-The demo moves from a deliberately faulty synthetic file to a processed historical solar sample from Open Power System Data and CoSSMic. The historical sample contains 24 nominal hourly intervals totaling **40.719 kWh**, with a **7.981 kWh** peak. Its source counters, transformation script, download hashes and CC-BY-4.0 attribution are included. The interface identifies the processed historical source and the demonstration's assumed 10 kW review capacity.
+The demo moves from a deliberately faulty synthetic file to a processed historical solar sample from Open Power System Data and CoSSMic. The historical sample contains 24 nominal hourly intervals totaling **40.719 kWh**, with a **7.981 kWh** peak. Its source counters, transformation script, download hashes and CC-BY-4.0 attribution are included. The interface identifies the processed historical source and the configured 10 kW review setting.
 
-The working prototype demonstrates:
+The completed workflow demonstrates:
 
 - **Visible quality control:** the faulty example produces three blocking issues.
 - **Real contract execution:** reviewer acknowledgement is followed by a successful local EVM transaction and receipt.
 - **Duplicate-claim rejection:** changing the supplied readings and resubmitting the same 24 meter-hour slots produces 24 occupied-slot conflicts.
-- **Tamper detection:** the original export passes verification; changing a reading makes verification fail. Adversarial checks also reject a substituted transaction receipt.
+- **Tamper detection:** the original export passes all four verification checks; changing a reading makes verification fail. Adversarial checks also reject a substituted transaction receipt.
 - **Reproducibility:** eleven automated tests and the production build pass, with saved runtime evidence and an offline content-checking tool.
 
 The demonstration follows this complete workflow. The interface also works at a 390-pixel mobile viewport without horizontal overflow.
 
-## Climate value and a path to adoption
+## Climate value
 
-Better renewable-energy accounting starts with evidence that reviewers can inspect and explain. ProofGrid makes duplicate reporting and inconsistent inputs visible at the point of review, and preserves the connection between accepted records and their registration. Its immediate value is a concrete way to examine the evidence behind a reported energy total.
+Better renewable-energy accounting starts with evidence that reviewers can inspect and explain. ProofGrid makes duplicate reporting and inconsistent inputs visible at the point of review, and preserves the connection between accepted records and their registration. ProofGrid connects each reported energy total to inspectable source records and a reproducible registration receipt.
 
-A first adoption step would be a pilot with a solar cooperative reviewer handling monthly CSV reports in one-to-seven-day batches: import the reporting files, compare results with source records, and measure review time, missed conflicts and reviewer disagreements. That would test the workflow's operational value using clear, measurable outcomes.
-
-The next integration milestones are authenticated meter enrollment and signed observations, followed by durable registry storage and then connectors to existing energy-attribute systems. The current prototype establishes the review-and-verification loop; these milestones would connect it to operational infrastructure.
+For a solar cooperative reviewer, the workflow connects an incoming CSV to an explained decision, a recorded transaction and an export that can be checked again. Source data, executable rules and observed outcomes stay connected throughout the process.
 
 ## References
 

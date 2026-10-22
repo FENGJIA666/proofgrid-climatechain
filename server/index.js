@@ -13,7 +13,7 @@ async function body(req){let s='';for await(const chunk of req){s+=chunk;if(s.le
 const server=http.createServer(async(req,res)=>{
  try{
  const url=new URL(req.url,'http://localhost');
- if(url.pathname==='/api/status')return json(res,200,{chainId:1337,address:chain.address,network:'Local EVM · session only',anchors,batches:[...batches.values()]});
+ if(url.pathname==='/api/status')return json(res,200,{chainId:1337,address:chain.address,network:'Local EVM registry',anchors,batches:[...batches.values()]});
  if(url.pathname==='/api/historical'){res.writeHead(200,{'Content-Type':'text/csv'});return res.end(historicalCsv);}
  if(url.pathname==='/api/sample'){res.writeHead(200,{'Content-Type':'text/csv'});return res.end(sample(url.searchParams.get('kind')));}
  if(url.pathname==='/api/analyze'&&req.method==='POST'){

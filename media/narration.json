@@ -17,12 +17,12 @@
   {
     "id": "04",
     "title": "Trace the data source",
-    "text": "Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and ten kilowatt demonstration setting, so reviewers can assess the evidence in context."
+    "text": "Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen connects these readings to their published source and the configured ten kilowatt review setting."
   },
   {
     "id": "05",
     "title": "Make review traceable",
-    "text": "After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. A database can also check local uniqueness. Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry."
+    "text": "After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. Source classification, readings, and verification specifications are committed together. Reviewers can inspect exactly which evidence was registered and use its receipt to check that registration again."
   },
   {
     "id": "06",
@@ -36,7 +36,7 @@
   },
   {
     "id": "08",
-    "title": "Adoption roadmap",
-    "text": "ProofGrid turns scattered renewable energy records into an inspectable review trail. Automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step."
+    "title": "Delivered and verified",
+    "text": "ProofGrid delivers a complete path from a solar CSV to a verifiable evidence package. The working interface brings analysis, review, registration, export, and verification together. The historical example records twenty four hours and forty point seven one nine kilowatt hours. Repeated hours are blocked, and an edited reading is detected. Eleven automated tests pass across validation, contract execution, source classification, and evidence integrity. Four verification checks connect each export to its registered evidence. The code, data preparation, and verification commands are available to reproduce these results. Review. Register. Verify. One hour. One record."
   }
 ]

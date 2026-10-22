@@ -3,83 +3,83 @@
   "artifacts": [
     {
       "file": "evidence/opsd-proof.json",
-      "sha256": "fd17362c41f210e564c49f10b5c70ca5bdd7a1ab2ed4c6ac352c5a89319490b6",
+      "sha256": "faa28afc36a5e7c6410dd9235c2b28578e07ecacadb618fbabff5378b149f0f8",
       "bytes": 3694
     },
     {
       "file": "evidence/tampered-proof.json",
-      "sha256": "f6b36967d567ca7fbe1748a5917322da1e9134e7a5e9d9000ffc1efa3cff55e5",
+      "sha256": "7ce5e014ee211b51d65bf23bd258343fe5cd345f83c81f339db08afc7806dcce",
       "bytes": 3694
     },
     {
       "file": "evidence/ui-01-overview.png",
-      "sha256": "18ff912474867aa8ca62d498cb953fa268c04f26c3202bb02c9575a687c9157b",
-      "bytes": 78450
+      "sha256": "73fc7cf446f78e4eecea3cef21178543d5caca26218f86ddffaa448623faa2c6",
+      "bytes": 78873
     },
     {
       "file": "evidence/ui-02-flagged.png",
-      "sha256": "d9749ff410a2f4748c736444b51d05e65796ee53f5c71828d0b28e2ac954db32",
-      "bytes": 88171
+      "sha256": "bd202ddf43cd8b02d13698284058d936a7b784334ded76123527de45f4405aad",
+      "bytes": 88524
     },
     {
       "file": "evidence/ui-03-historical.png",
-      "sha256": "0c3558a17169abaabaf0019799fc9d58a50677279b7fbb8c4331630a10f1c2a8",
-      "bytes": 94990
+      "sha256": "ed1f1ad9fafd7b7d4c5ee5cb837f937ec956a778c62fd4f7973db3690fac533c",
+      "bytes": 95023
     },
     {
       "file": "evidence/ui-04-anchored.png",
-      "sha256": "363c892e3adddccea5e8ae29608923943892c70f8722b8c9c674dc40b80f6d11",
-      "bytes": 91273
+      "sha256": "98f73c40bcc202c0b4ca9f39fa21c9bab0d348df9a7698c13b1646e9eccbaca8",
+      "bytes": 91300
     },
     {
       "file": "evidence/ui-05-verified.png",
-      "sha256": "2145404e6f5f075d5aa75d7c84b51dab39acd7d40b32cc50fdcabff4891303ab",
-      "bytes": 67387
+      "sha256": "298685b97eff0fabbdb51e8451cf3242f084233e1780c48cf30fbe4ccf089c3d",
+      "bytes": 67525
     },
     {
       "file": "evidence/ui-06-tampered.png",
-      "sha256": "aae812cea3e6fe23090523ca0a85cdf63503ccdcabc41b0d9a0e3246101fc03d",
-      "bytes": 67353
+      "sha256": "eb2b0aa4571668bc26bba140a60ad0896400cf450c3f7e99c0586b6a16924e92",
+      "bytes": 68546
     },
     {
       "file": "evidence/ui-07-duplicate.png",
-      "sha256": "6aad88f7cac6b177c002c71e1039fcde15783157a98c4fbd9dd0a07c803ee9c4",
-      "bytes": 92442
+      "sha256": "395f8e95eb9597c164e78a5558f0fd646a7a558d580304eea1e60f72336e69e2",
+      "bytes": 92701
     },
     {
       "file": "evidence/ui-08-registry.png",
-      "sha256": "3365298228928ffc494a62aebb5be3f39c535a0457b376979f1161a6bd42301b",
-      "bytes": 50906
+      "sha256": "9c4191616b81988fcf8afaf5a62b393f5403602ed6cf28f111d57767d1133b89",
+      "bytes": 51270
     },
     {
       "file": "evidence/ui-09-method.png",
-      "sha256": "b251e926f4d9b111f3634df379331e46bd46d89ac139e9b8dfd1a04cc0d665a9",
-      "bytes": 103111
+      "sha256": "049e036e5d4df487037faf238126bd7bed8631fd976b0e9711d7fd8ac1ab0e9c",
+      "bytes": 105987
     },
     {
       "file": "evidence/ui-mobile.png",
-      "sha256": "1b4ebcb6013b17d274dfcb00cd6229e46f4d60f5e3ef6e7be01177b3909c4dbf",
-      "bytes": 68829
+      "sha256": "6ad07ee080aa0e1823228d390b19f0792d18a14fdc53f3d38d48c638a8a2610c",
+      "bytes": 56232
     },
     {
       "file": "evidence/video-frame-112.png",
-      "sha256": "16dde8b75b7d9f0ba0a601a0654c0e9f74bd0ebcd686882a3e001db8b0f0ea19",
-      "bytes": 431348
+      "sha256": "ad9e3103a68793b691b5d884f583fdb6654ee8ec99022f6d784797aaa61c7066",
+      "bytes": 428618
     },
     {
       "file": "media/ProofGrid-demo.mp4",
-      "sha256": "f2321504ca0b31fb34d054f77502118259c4a173e193861da7d73ab02e46e44a",
-      "bytes": 6272551
+      "sha256": "487ad1c9bdfe521edbcca71bb7a9dfcb2fa0929970de1d552327fb3989c9215c",
+      "bytes": 6416344
     },
     {
       "file": "media/ProofGrid-demo.srt",
-      "sha256": "b5305bda6a138fad3b85983ae73de58750a28cdb62ca5bf46f8a18136abbed85",
-      "bytes": 5158
+      "sha256": "ce078a582f3ab6a96fdb516e4dc4e04697f8d8012554a9ecc28b8a4111d73327",
+      "bytes": 5511
     },
     {
       "file": "media/narration.json",
-      "sha256": "69d10e13800e45a208c43502d1c44c28f4473ad309f03a8b8913e5b63189e544",
-      "bytes": 4395
+      "sha256": "335b0eb744f04928e459b68c985c5b69112b826f98f10978d3a92da4eb6fcb59",
+      "bytes": 4516
     }
   ]
 }

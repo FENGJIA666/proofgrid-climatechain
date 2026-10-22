@@ -135,11 +135,11 @@
   },
   "anchor": {
     "digest": "0xe36638217d197878f3fe0a1870730ae3ff320325c4049d9d504430f3e8caa373",
-    "transactionHash": "0x07a5838db5219c127676e3a68a50bc92a7db025598e317212ef47b4279e8562d",
+    "transactionHash": "0x7e54232bbc1a9222db53f9acc5af8c9e0eff130a2f89c7c117dfac7eef31c0e6",
     "blockNumber": 2,
-    "contract": "0x42c35FcA8F9407a272F18d27af762b3C6E2c1a90",
+    "contract": "0x4e86B54D2206Fe684F5F97ef3A00966E813AEF55",
     "chainId": 1337,
     "network": "local-ephemeral",
-    "issuer": "0x2207783aF0d6516045ea7FdF313E15d61e94e702"
+    "issuer": "0x1d71Efa2079D0CEAC1789B435685737F664D71a1"
   }
 }
