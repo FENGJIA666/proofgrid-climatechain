@@ -1,147 +1,163 @@
 1
-00:00:00,000 --> 00:00:06,431
-A solar project can submit two plausible reports that cover the same meter and hour.
+00:00:00,000 --> 00:00:02,267
+Clean energy deserves clear evidence.
 
 2
-00:00:06,431 --> 00:00:10,718
-Counting both would overstate the energy represented by those records.
+00:00:02,267 --> 00:00:09,520
+When two plausible solar reports cover the same meter and hour, a spreadsheet can count both.
 
 3
-00:00:10,718 --> 00:00:16,292
-ProofGrid makes that conflict visible before evidence moves into a formal accounting process.
+00:00:09,520 --> 00:00:14,507
+ProofGrid catches that conflict before the records enter renewable energy accounting.
 
 4
-00:00:16,292 --> 00:00:24,438
-It is a small, reproducible review prototype for the Renewable Energy and Energy Trading track, not a certificate issuer.
+00:00:14,507 --> 00:00:24,027
+Built for small solar operators and community energy reviewers, it connects data quality, duplicate protection, and verifiable evidence in one workflow.
 
 5
-00:00:24,438 --> 00:00:30,656
-The workspace starts with a meter label, a capacity assumption, and an hourly CSV.
+00:00:24,027 --> 00:00:29,468
+This is our entry for the Renewable Energy and Energy Trading track.
 
 6
-00:00:30,656 --> 00:00:35,985
-Each row contains a UTC timestamp and interval energy in kilowatt hours.
+00:00:29,468 --> 00:00:36,426
+Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV.
 
 7
-00:00:35,985 --> 00:00:40,871
-We can use labelled synthetic examples or a processed historical reference.
+00:00:36,426 --> 00:00:42,390
+Every row represents one UTC hour and its energy in kilowatt hours.
 
 8
-00:00:40,871 --> 00:00:49,754
-The interface exposes the candidate total and review issues, so a plausible number alone never stands in for checked evidence.
+00:00:42,390 --> 00:00:49,348
+The workspace brings the generation profile, candidate total, raw readings, and quality findings together.
 
 9
-00:00:49,754 --> 00:00:56,689
-Here, the deliberately faulty sample contains a reading above the supplied capacity and a repeated hour.
+00:00:49,348 --> 00:00:55,809
+Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs.
 
 10
-00:00:56,689 --> 00:01:01,457
-ProofGrid explains these problems and blocks the entire batch from anchoring.
+00:00:55,809 --> 00:01:04,258
+Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
 
 11
-00:01:01,457 --> 00:01:06,225
-It does not quietly discard inconvenient rows and approve the remainder.
+00:01:04,258 --> 00:01:07,809
+Watch what happens with a faulty report.
 
 12
-00:01:06,225 --> 00:01:08,392
-These checks are deterministic rules.
+00:01:07,809 --> 00:01:13,389
+One reading exceeds the supplied capacity, and another repeats an hour.
 
 13
-00:01:08,392 --> 00:01:15,761
-A separate peak comparison can prompt human review, but it is not a trained artificial intelligence model.
+00:01:13,389 --> 00:01:17,955
+ProofGrid identifies the exact problems and blocks the batch.
 
 14
-00:01:15,761 --> 00:01:21,892
-This reference comes from Open Power System Data and the CoSSMic project.
+00:01:17,955 --> 00:01:22,521
+Clear explanations give the reviewer an actionable correction path.
 
 15
-00:01:21,892 --> 00:01:31,599
-Differences between published cumulative counters produce twenty four nominal hourly values, totaling forty point seven one nine kilowatt hours.
+00:01:22,521 --> 00:01:27,594
+The validation also checks formatting, continuity, and nonnegative energy values.
 
 16
-00:01:31,599 --> 00:01:38,241
-These are processed historical measurements, with possible source interpolation and approximate hourly boundaries.
+00:01:27,594 --> 00:01:36,218
+An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
 
 17
-00:01:38,241 --> 00:01:45,393
-The ten kilowatt capacity is our explicit demonstration assumption, not a verified installation rating.
+00:01:36,218 --> 00:01:42,467
+Now load our historical reference from Open Power System Data and CoSSMic.
 
 18
-00:01:45,393 --> 00:01:50,953
-After inspecting the source and issues, the reviewer explicitly confirms the batch.
+00:01:42,467 --> 00:01:49,238
+Twenty four nominal hourly values total forty point seven one nine kilowatt hours.
 
 19
-00:01:50,953 --> 00:01:56,049
-ProofGrid submits a real transaction to its local Ethereum Virtual Machine.
+00:01:49,238 --> 00:01:58,092
+The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible.
 
 20
-00:01:56,049 --> 00:02:01,609
-The contract records an evidence commitment and reserves the meter hour slots.
+00:01:58,092 --> 00:02:10,070
+The screen identifies the processed historical source, approximate hourly boundaries, and assumed ten kilowatt capacity, so reviewers can assess the evidence in context.
 
 21
-00:02:01,609 --> 00:02:04,852
-The receipt demonstrates execution in this session.
+00:02:10,070 --> 00:02:15,526
+After reviewing the profile and any warnings, the reviewer confirms the batch.
 
 22
-00:02:04,852 --> 00:02:13,191
-It does not authenticate a physical meter, establish renewable origin, or make this local network a public registry.
+00:02:15,526 --> 00:02:20,527
+ProofGrid executes a real transaction on a local Ethereum Virtual Machine.
 
 23
-00:02:13,191 --> 00:02:17,763
-Now we try to register the same meter hours again.
+00:02:20,527 --> 00:02:26,892
+Our Solidity contract records the evidence digest and reserves the meter hour slots atomically.
 
 24
-00:02:17,763 --> 00:02:24,163
-The existing slots cause rejection, even if a repeated claim supplies different energy values.
+00:02:26,892 --> 00:02:32,803
+The resulting receipt connects the reviewed dataset to a specific transaction and block.
 
 25
-00:02:24,163 --> 00:02:30,563
-This protects a specific boundary: the same meter identifier in the same deployed contract.
+00:02:32,803 --> 00:02:35,985
+A database can also check local uniqueness.
 
 26
-00:02:30,563 --> 00:02:35,592
-A renamed meter or a different registry is outside that protection.
+00:02:35,985 --> 00:02:45,078
+Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry.
 
 27
-00:02:35,592 --> 00:02:39,707
-Trusted identity enrollment and registry integration remain future work.
+00:02:45,078 --> 00:02:51,857
+Next, we change the supplied readings and try the same twenty four meter hours again.
 
 28
-00:02:39,707 --> 00:02:44,243
-The exported package lets us check the recorded payload again.
+00:02:51,857 --> 00:02:56,828
+All twenty four occupied slots are detected, and registration is blocked.
 
 29
-00:02:44,243 --> 00:02:51,954
-Verification compares its content hash with the commitment and checks the transaction against the current local contract.
+00:02:56,828 --> 00:03:03,608
+Changing the file does not create fresh capacity to claim those hours in this registry.
 
 30
-00:02:51,954 --> 00:02:55,130
-Changing a reading causes verification to fail.
+00:03:03,608 --> 00:03:14,454
+The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
 
 31
-00:02:55,130 --> 00:02:59,666
-An offline matching hash alone would establish only internal consistency.
+00:03:14,454 --> 00:03:19,106
+Export the accepted evidence as a portable JSON package.
 
 32
-00:02:59,666 --> 00:03:07,377
-The local receipt adds registration evidence, but neither check proves that the original measurements are physically true.
+00:03:19,106 --> 00:03:22,724
+The original passes content and transaction verification.
 
 33
-00:03:07,377 --> 00:03:14,380
-ProofGrid brings data checks, a scoped duplicate guard, and evidence verification into one inspectable workflow.
+00:03:22,724 --> 00:03:26,860
+Now alter a reading: the content check fails.
 
 34
-00:03:14,380 --> 00:03:20,916
-A future pilot could measure review time and errors against an operator’s source records.
+00:03:26,860 --> 00:03:34,613
+ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event.
 
 35
-00:03:20,916 --> 00:03:25,584
-We have not conducted that pilot or measured emissions savings.
+00:03:34,613 --> 00:03:40,299
+Reviewers get a clear result and can see which check failed.
 
 36
-00:03:25,584 --> 00:03:28,852
-The chain resets with the server session.
+00:03:40,299 --> 00:03:47,019
+A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
 
 37
-00:03:28,852 --> 00:03:37,722
-Our contribution is a reproducible pre review tool that could support, rather than replace, established renewable energy accounting systems.
+00:03:47,019 --> 00:03:52,240
+ProofGrid turns scattered renewable energy records into an inspectable review trail.
+
+38
+00:03:52,240 --> 00:03:57,462
+Nine automated tests and the complete local workflow demonstrate the core.
+
+39
+00:03:57,462 --> 00:04:07,905
+The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration.
+
+40
+00:04:07,905 --> 00:04:15,026
+Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce.
+
+41
+00:04:15,026 --> 00:04:22,147
+Open code, traceable data, and practical checks provide a concrete foundation for that next step.

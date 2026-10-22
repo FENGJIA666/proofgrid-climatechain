@@ -1,59 +1,75 @@
-# ProofGrid — product brief
+# ProofGrid product and architecture
 
-Status: implementation scope checked against source on 22 October 2026; runtime acceptance and final submission are tracked separately.
+ProofGrid turns hourly solar-generation records into explained review decisions, scoped registrations and verifiable exports. Its target user is a solar cooperative or small-project reviewer checking CSV reports before passing energy totals into an accounting workflow.
 
-## Problem and audience
+## The review workflow
 
-Small solar projects often circulate meter readings in spreadsheets. A reviewer needs to distinguish malformed records, suspicious measurements and duplicated reporting periods before aggregating energy. A document hash alone cannot tell them whether two claims refer to the same meter interval.
+| Step | Reviewer action | Product result |
+|---|---|---|
+| Import | Choose a meter label, capacity and hourly CSV | Display the candidate energy total and profile |
+| Review | Inspect format, continuity, duplicate and capacity checks | Explain blocking issues; highlight unusual peaks for attention |
+| Register | Acknowledge the reviewed evidence | Submit a real local EVM transaction; reserve its meter-hours |
+| Export | Download the evidence package | Preserve the committed payload and registration details |
+| Verify | Reload the package | Check content integrity, registry state and transaction receipt |
 
-ProofGrid is a local proof of concept for solar operators, community-energy coordinators and reviewers. It combines explicit data checks, interval-conflict review and an independently verifiable evidence package. A local EVM contract records evidence commitments and prevents reuse within its documented scope.
+Any blocking issue stops the entire batch. The workspace retains the explanation so the source can be corrected and resubmitted. The peak-to-median comparison is a deterministic review heuristic, allowing a reviewer to inspect a plausible but unusual profile before proceeding.
 
-## Demonstration workflow
+## What the contract adds
 
-1. Load a clearly labelled synthetic solar-meter dataset or import a supported file.
-2. Review unit/time/readings validation and an explanation of each rejected or flagged row.
-3. Inspect duplicate meter-hours. The supported intervals are fixed UTC hours, so overlapping coverage resolves to an identical meter-hour slot. Any blocking issue rejects the entire batch; the app does not silently remove rows or approve a partial total.
-4. Review the batch total and its issues. A displayed total for a blocked batch is a candidate total, not accepted energy. Separate values supplied by a user from assumptions.
-5. Anchor accepted evidence to a local EVM contract and display its actual receipt/network.
-6. Export a canonical evidence package and verify its content independently. Alter a value to demonstrate failed integrity verification.
+A different document hash does not imply a different reporting interval. ProofGrid therefore binds two things: a hash of the reviewed evidence and the meter-hour slots represented by that evidence. A changed reading produces a new payload hash, while the existing meter-hour occupancy still prevents a repeated registration.
 
-The import schema is `timestamp,kwh`: 1–168 continuous UTC hours, interval energy in nonnegative kWh with at most three decimals. No arbitrary-length intervals or cumulative-counter imports are supported. Payload hashing uses the ordered JSON representation defined by `payloadFor`; an exported JSON payload must preserve its serialized field order for this version. Local verification also checks the current contract and transaction event.
+A database unique key can also prevent duplicates for one operator. The contract design makes the registration rule and its transaction result inspectable through source and receipts. It is a local working demonstration of that interface, providing a concrete base for future integration between reviewers.
 
-## Minimum useful behavior
+## Architecture
 
-- Declare units and whether readings are cumulative counters or interval energy; never infer these silently.
-- Handle missing values, nonfinite numbers, invalid timestamps, negative energy, reversed/zero-length intervals and duplicate identifiers.
-- Define interval overlap precisely. Prefer half-open intervals so adjacent periods do not conflict.
-- Use meter identity consistently. Explain that renamed or unregistered meters can evade purely local identity checks.
-- Maintain a visible audit trail for rejected and accepted records; do not silently delete or repair evidence.
-- Use reproducible integrity checks with a documented canonical representation.
-- Treat contract failures as failures. Do not show successful anchoring until a real transaction receipt exists.
+```mermaid
+flowchart LR
+    CSV[Hourly CSV] --> UI[Review workspace]
+    UI --> API[Validation API]
+    API --> REVIEW[Explained batch result]
+    REVIEW --> ACK[Reviewer acknowledgement]
+    ACK --> EVM[Local Solidity registry]
+    EVM --> RECEIPT[Transaction receipt]
+    API --> PAYLOAD[Evidence payload]
+    RECEIPT --> EXPORT[JSON export]
+    PAYLOAD --> EXPORT
+    EXPORT --> VERIFY[Hash and receipt verification]
+```
 
-## Claims and limitations
+The Vite/JavaScript workspace calls a local Node.js server. `server/domain.js` validates inputs and builds the ordered evidence payload. `server/chain.js` compiles Solidity with solc and connects ethers to an in-process Ganache EVM. `EnergyRegistry.sol` atomically records commitments and meter-hour occupancy. Verification checks the payload hash, current registry and transaction event, including receipt metadata.
 
-ProofGrid reviews the internal consistency and traceability of supplied evidence. It does not establish that a physical solar installation exists, that a meter is trustworthy, or that energy is renewable. It does not issue certified renewable-energy certificates, establish carbon-credit eligibility or prove avoided emissions.
+## Technical specification
 
-The local chain is a reproducible engineering demonstration, not a public decentralized trust service. Resetting it resets its state. Its duplicate-prevention boundary is one deployed contract and its chosen identity model; it does not prevent reuse in another registry or deployment.
+| Item | Current behavior |
+|---|---|
+| CSV schema | `timestamp,kwh`; 1–168 continuous, strictly increasing UTC hourly records |
+| Energy representation | Nonnegative interval kWh, at most three decimals; total stored as integer Wh |
+| Interval convention | Each timestamp labels a fixed one-hour interval; arbitrary intervals and direct cumulative-counter imports are outside the format |
+| Meter label | Canonical trimmed uppercase identifier, 3–32 letters/digits/hyphens; supplied by the user |
+| Capacity | User-supplied kW value; one-hour kWh compared with this bound |
+| Batch decision | Blocking errors reject the complete batch; warnings prompt explicit review |
+| Registration key | Same meter identifier plus UTC hour in one deployed registry |
+| Atomicity | A conflict rejects the complete transaction; no partial reservation |
+| Evidence commitment | SHA-256 of the ordered JSON payload produced by `payloadFor`; preserve exported field order |
+| Verification | Content, current contract, registered digest and matching receipt/event metadata |
+| Local runtime | Loopback port 4187; session-local chain and state; no wallet extension or paid RPC needed |
+| Proof meaning | Commitment and local registration of supplied evidence; physical source authentication belongs to the source-enrollment layer |
+| Accounting role | Evidence preparation for renewable-energy workflows; formal certificate issuance remains with established systems |
 
-Synthetic fixtures demonstrate behavior, not field effectiveness. Any anomalies detected by rules must be described as rules. Any learned model must disclose its training/evaluation data, uncertainty and limitations. Human review is needed before consequential use.
+## Data demonstration
 
-## Adoption and scaling proposal
+Two labelled synthetic examples exercise clean input and deliberate faults. A separate processed historical reference comes from Open Power System Data's CoSSMic household dataset, version 2020-04-15, under CC BY 4.0.
 
-A first pilot would compare supplied intervals against an operator's source records, record reviewer disagreements and measure review time and duplicate-detection performance. No pilot has been conducted. Production adoption would need authenticated meter enrollment, signed observations, protected access, durable storage, independent governance and integration with existing energy registries. These are future requirements, not implemented features.
+The historical sample covers 24 nominal hours on 1 June 2016, totaling **40.719 kWh**, with a **7.981 kWh** peak. Its 10 kW capacity is an explicit review assumption. The transformation differences adjacent published cumulative readings. OPSD uses hourly `.last()` resampling with left labels, giving the derived intervals approximately one-minute boundary displacement. The publisher's data includes gap filling; none of the selected rows marks this PV column as interpolated.
 
-## Demonstration narrative
+`data/opsd-raw-selected.csv`, `data/opsd-provenance.json` and `scripts/prepare-opsd.py` preserve the selected counters, source hashes, attribution and reproducible transformation. The dataset column is a public reference label, rather than a physically enrolled meter identity.
 
-Open with a reviewer facing two overlapping claims for one solar meter. Show why accepting both overstates energy. Reject malformed and conflicting intervals, retain an explainable accepted total, anchor its evidence, then alter an exported value and detect the mismatch. End with the distinction between evidence integrity and physical-world truth.
+## Demonstrated behavior
 
+Actual runtime checks show faulty input blocked, the historical batch reviewed and anchored, its export successfully verified, an altered export rejected, and the same 24 meter-hours rejected after values changed. Contract/API tests additionally cover atomic rejection, canonical identifiers and receipt substitution. See [the acceptance record](UI_ACCEPTANCE.md) for evidence and [the README](../README.md) for reproducible commands.
 
-## Existing systems and differentiation
+## Adoption pathway
 
-The [US EPA explains double counting](https://www.epa.gov/green-power-markets/double-counting) and describes [energy-attribute tracking systems](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems). Established systems already use unique identifiers. ProofGrid does not claim to invent double-count prevention or replace them. Its intended contribution is a small, reproducible pre-review workflow joining data checks, a scoped registry commitment and an export-verification demonstration.
+A first pilot would support a solar cooperative reviewer checking monthly reports in one-to-seven-day batches. It would compare review decisions with source records and measure review time, missed conflicts and reviewer disagreement. Subsequent milestones are authenticated meter enrollment and signed observations, durable registry operation, then adapters to existing energy-attribute systems.
 
-## Historical reference fixture
-
-`data/opsd-solar-2016-06-01.csv` derives 24 interval values from published CoSSMic cumulative PV counters distributed by Open Power System Data, version 2020-04-15. The total is 40.719 kWh and the maximum is 7.981 kWh. The 10 kW review capacity is an explicit demonstration assumption, not a verified nameplate rating.
-
-OPSD resamples cumulative counters with hourly `.last()` and left-labelled timestamps. Adjacent differences are assigned nominal current-hour labels, while underlying boundaries are approximately one minute earlier. These are processed historical reference intervals, not independently observed exact clock-hour readings. OPSD fills source gaps; the 25 selected source rows do not mark this PV column as interpolated, which is not a guarantee of wholly untouched raw measurement. The source identifier is not an authenticated meter identity.
-
-See `data/opsd-provenance.json`, `data/opsd-raw-selected.csv`, and `scripts/prepare-opsd.py` for source hashes, original selected counters and reproducible transformation. This fixture must remain separate from synthetic/injected-fault demonstrations.
+This sequence connects the demonstrated review loop to operational evidence infrastructure. The [EPA description of double counting](https://www.epa.gov/green-power-markets/double-counting) and [existing tracking systems](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems) provide the accounting context; ProofGrid's focus is the source-evidence workflow upstream of established certificate systems.

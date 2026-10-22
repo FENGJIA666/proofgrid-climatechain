@@ -1,82 +1,77 @@
 # ProofGrid demonstration script
 
-Status: local video accepted by the independent opposition reviewer: 217.806893 seconds, H.264/AAC, 1920×1080, 5,228,285 bytes; full decoding passed and eight representative chapter frames passed inspection. The manager opened it in QuickTime at 03:38 with playback engaged. Public upload/playback and final submission remain pending.
+Status: revised value-led video independently accepted. The final candidate is 262.214512 seconds (4:22.2), H.264/AAC at 1920×1080, 6,333,382 bytes. Full decoding and representative chapter-frame inspection passed. Public playback and final submission remain separate pending stages.
 
-`media/narration.json` contains eight segments and 476 English words. At 125–140 words per minute, spoken duration is approximately 3:24–3:49; allow short pauses/transitions and verify the final encoded video is 180–300 seconds. Do not pad with claims unsupported by the footage.
+`media/narration.json` contains eight segments and 542 English words. Rendering uses 142 words per minute; the final encoded video must remain 180–300 seconds. The edit uses actual local acceptance screens and synthetic narration.
 
-## Capture and editing rules
+## Editing and evidence
 
-- Use actual app actions and receipts; no mock success screens.
-- Synthetic fault examples and processed historical OPSD data must remain visibly distinguished.
-- No secrets, account data or unrelated browser content in frames.
-- Preserve the local EVM and session-only disclosure.
-- If a feature changes, update its narration before rendering.
-- Actual successful replay/tamper verification evidence is required before those segments can be accepted.
+The demonstration leads with the reviewer problem, visible workflow outcomes and the technical role of each feature. Synthetic examples and processed historical data remain distinguished; local EVM execution and prospective rollout are stated accurately. Source context, identity boundaries and certificate limits are retained in the technical documentation and visible interface. No AI model, field deployment, certificate issuance or measured emissions savings are claimed.
 
-## 01 — The problem
+## 01 — One hour. One record.
 
-Capture: Opening title and problem graphic or app overview. Identify the track. No invented interview or field-deployment claim.
+Screen: Overview; introduce the repeated meter-hour problem and target reviewer.
 
 Narration:
 
-A solar project can submit two plausible reports that cover the same meter and hour. Counting both would overstate the energy represented by those records. ProofGrid makes that conflict visible before evidence moves into a formal accounting process. It is a small, reproducible review prototype for the Renewable Energy and Energy Trading track, not a certificate issuer.
+Clean energy deserves clear evidence. When two plausible solar reports cover the same meter and hour, a spreadsheet can count both. ProofGrid catches that conflict before the records enter renewable energy accounting. Built for small solar operators and community energy reviewers, it connects data quality, duplicate protection, and verifiable evidence in one workflow. This is our entry for the Renewable Energy and Energy Trading track.
 
-## 02 — Inspect the evidence
+## 02 — Review in one workspace
 
-Capture: Actual overview with meter, capacity and hourly data controls. Clearly show synthetic versus historical provenance.
-
-Narration:
-
-The workspace starts with a meter label, a capacity assumption, and an hourly CSV. Each row contains a UTC timestamp and interval energy in kilowatt hours. We can use labelled synthetic examples or a processed historical reference. The interface exposes the candidate total and review issues, so a plausible number alone never stands in for checked evidence.
-
-## 03 — Block faulty submissions
-
-Capture: Run deliberately faulty synthetic sample. Capture both capacity/duplicate issues and disabled or rejected anchoring. Do not imply the historical file contains injected faults.
+Screen: Actual workspace with CSV, profile, source and review controls.
 
 Narration:
 
-Here, the deliberately faulty sample contains a reading above the supplied capacity and a repeated hour. ProofGrid explains these problems and blocks the entire batch from anchoring. It does not quietly discard inconvenient rows and approve the remainder. These checks are deterministic rules. A separate peak comparison can prompt human review, but it is not a trained artificial intelligence model.
+Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV. Every row represents one UTC hour and its energy in kilowatt hours. The workspace brings the generation profile, candidate total, raw readings, and quality findings together. Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs. Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data.
 
-## 04 — Use a traceable historical reference
+## 03 — Catch problems early
 
-Capture: Load OPSD reference. Show 24 rows, 40.719 kWh total, source information, approximate boundary and 10 kW assumption. Record source label exactly as implemented.
-
-Narration:
-
-This reference comes from Open Power System Data and the CoSSMic project. Differences between published cumulative counters produce twenty four nominal hourly values, totaling forty point seven one nine kilowatt hours. These are processed historical measurements, with possible source interpolation and approximate hourly boundaries. The ten kilowatt capacity is our explicit demonstration assumption, not a verified installation rating.
-
-## 05 — Review and anchor
-
-Capture: Check reviewer confirmation and trigger anchoring. Capture successful actual transaction, contract/network and receipt. Show local/session-only label.
+Screen: Actual faulty synthetic sample with capacity and duplicate issues.
 
 Narration:
 
-After inspecting the source and issues, the reviewer explicitly confirms the batch. ProofGrid submits a real transaction to its local Ethereum Virtual Machine. The contract records an evidence commitment and reserves the meter hour slots. The receipt demonstrates execution in this session. It does not authenticate a physical meter, establish renewable origin, or make this local network a public registry.
+Watch what happens with a faulty report. One reading exceeds the supplied capacity, and another repeats an hour. ProofGrid identifies the exact problems and blocks the batch. Clear explanations give the reviewer an actionable correction path. The validation also checks formatting, continuity, and nonnegative energy values. An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused.
 
-## 06 — Reject a repeated claim
+## 04 — Trace the data source
 
-Capture: Re-import identical meter hours after successful anchor and show rejection. Separately verify altered readings for same hours also fail before narrating that behavior.
-
-Narration:
-
-Now we try to register the same meter hours again. The existing slots cause rejection, even if a repeated claim supplies different energy values. This protects a specific boundary: the same meter identifier in the same deployed contract. A renamed meter or a different registry is outside that protection. Trusted identity enrollment and registry integration remain future work.
-
-## 07 — Check the exported evidence
-
-Capture: Export real evidence, verify unchanged package successfully, alter one reading and show failed verification. Do not fabricate screenshots or statuses.
+Screen: Actual OPSD review: 24 hours, 40.719 kWh, source/capacity caveats.
 
 Narration:
 
-The exported package lets us check the recorded payload again. Verification compares its content hash with the commitment and checks the transaction against the current local contract. Changing a reading causes verification to fail. An offline matching hash alone would establish only internal consistency. The local receipt adds registration evidence, but neither check proves that the original measurements are physically true.
+Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and assumed ten kilowatt capacity, so reviewers can assess the evidence in context.
 
-## 08 — A practical next step
+## 05 — Make review traceable
 
-Capture: Return to a stable overview or limitations panel. Show future-pilot and local-reset limits. Do not imply production deployment or quantified environmental benefit.
+Screen: Actual confirmed local EVM transaction and block receipt.
 
 Narration:
 
-ProofGrid brings data checks, a scoped duplicate guard, and evidence verification into one inspectable workflow. A future pilot could measure review time and errors against an operator’s source records. We have not conducted that pilot or measured emissions savings. The chain resets with the server session. Our contribution is a reproducible pre review tool that could support, rather than replace, established renewable energy accounting systems.
+After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. A database can also check local uniqueness. Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry.
+
+## 06 — Stop repeat registration
+
+Screen: Actual same-slot re-import rejection after altered readings; source test covers mined revert.
+
+Narration:
+
+Next, we change the supplied readings and try the same twenty four meter hours again. All twenty four occupied slots are detected, and registration is blocked. Changing the file does not create fresh capacity to claim those hours in this registry. The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains.
+
+## 07 — Evidence that checks out
+
+Screen: Actual original verification followed by edited-reading failure.
+
+Narration:
+
+Export the accepted evidence as a portable JSON package. The original passes content and transaction verification. Now alter a reading: the content check fails. ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event. Reviewers get a clear result and can see which check failed. A separate command-line verifier also makes the content-integrity check reproducible outside the interface.
+
+## 08 — Adoption roadmap
+
+Screen: Actual evidence registry with its accepted registration; prospective pilot and registry integration roadmap.
+
+Narration:
+
+ProofGrid turns scattered renewable energy records into an inspectable review trail. Nine automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step.
 
 ## Final acceptance
 
-Local acceptance completed: 217.806893 seconds (3:37.8), H.264/AAC at 1920×1080, 5,228,285 bytes. The independent opposition reviewer fully decoded the video without errors and accepted eight chapter frames. The manager additionally opened the video in QuickTime, which showed 03:38 and playback engaged. External upload and public playback are still pending. The Devpost form requires a video link; a local MP4 alone does not satisfy that field. The additional file attachment has a 35 MB limit.
+The final candidate passed ffprobe duration/codec/dimension checks, full decoding and independent representative frame inspection. The final chapter uses the accepted registry view with its adoption roadmap. SHA-256: `adc72aa5922e62adb44ab874981e6b8d32aecb7a30a19af534fd318b8da4181f`. Public upload/playback and final Devpost submission remain separate pending stages. The required file attachment is limited to 35 MB.

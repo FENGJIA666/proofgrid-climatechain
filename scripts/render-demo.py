@@ -7,8 +7,8 @@ out=ROOT/'media'/'intermediate';out.mkdir(exist_ok=True)
 regular='/System/Library/Fonts/Supplemental/Arial.ttf';bold='/System/Library/Fonts/Supplemental/Arial Bold.ttf'
 def font(n,b=False):return ImageFont.truetype(bold if b else regular,n)
 chapters=json.loads((ROOT/'media/narration.json').read_text())
-shots=['ui-01-overview.png','ui-01-overview.png','ui-02-flagged.png','ui-03-historical.png','ui-04-anchored.png','ui-07-duplicate.png','ui-06-tampered.png','ui-09-method.png']
-points=[['A reporting gap','Same meter + hour','One scoped record'],['UTC hourly CSV','Explicit assumptions','Visible review trail'],['Capacity violation','Repeated meter-hour','Entire batch blocked'],['OPSD / CoSSMic','40.719 kWh sample','Historical, processed'],['Review confirmation','Actual EVM transaction','Local session only'],['Changed value, same hour','24 occupied slots','Claim blocked'],['Original proof: passes','Edited reading: fails','Integrity is not truth'],['Open, reproducible code','No field pilot claimed','No certificates issued']]
+shots=['ui-01-overview.png','ui-01-overview.png','ui-02-flagged.png','ui-03-historical.png','ui-04-anchored.png','ui-07-duplicate.png','ui-06-tampered.png','ui-08-registry.png']
+points=[['Catch repeated hours','Review renewable records','One evidence workflow'],['CSV to clear findings','Profile + raw readings','Fast reviewer orientation'],['Find exact issues','Block faulty batches','Transparent rules'],['OPSD / CoSSMic','40.719 kWh reference','Reproducible source trail'],['Human review checkpoint','Actual EVM execution','Inspectable receipt'],['Changed file, same slots','24 conflicts detected','Atomic contract guard'],['Original proof: passes','Edited reading: fails','Four visible checks'],['Operator pilot','Trusted meter enrollment','Durable integration']]
 subtitles=[];elapsed=0;clips=[]
 def stamp(sec):
  ms=round(sec*1000);return f'{ms//3600000:02}:{ms//60000%60:02}:{ms//1000%60:02},{ms%1000:03}'
@@ -35,7 +35,6 @@ for i,c in enumerate(chapters):
   # Zoom into the relevant application panel; retain original screenshots separately.
   if i in (1,2,3,4,5): img=img.crop((265,315,1260,min(img.height-40,1030)))
   elif i==6: img=img.crop((265,300,1260,min(img.height-35,800)))
-  elif i==7: img=img.crop((265,300,1260,img.height-45))
   ratio=min(1440/img.width,760/img.height);img=img.resize((round(img.width*ratio),round(img.height*ratio)),Image.Resampling.LANCZOS)
   im.paste(img,(410+(1450-img.width)//2,135+(760-img.height)//2))
   d.rounded_rectangle((40,915,1880,1030),16,fill='#1b3540')

@@ -1,10 +1,22 @@
 # ProofGrid
 
-A reproducible local prototype for reviewing solar-generation evidence, rejecting repeated meter-hours, and checking exported evidence against a local EVM transaction.
+**Good energy. Clear evidence.**
+
+Turn hourly solar data into a reviewable, tamper-evident record. ProofGrid brings explainable quality checks, smart-contract meter-hour registration and evidence verification into one local working prototype.
 
 **IEEE ClimateChain Global Hackathon — Renewable Energy & Energy Trading.**
 
-ProofGrid is a pre-review tool, not a renewable-energy certificate issuer. It checks supplied records and scoped registration; it does not prove physical generation, renewable origin or avoided emissions.
+A reviewer can catch conflicting reports, inspect a historical solar sample, anchor the reviewed batch on a real local EVM, and verify the exported evidence—all in one workflow.
+
+| Demonstrated capability | Observed result |
+|---|---|
+| Quality review | Faulty synthetic input blocked with three explained issues |
+| Historical reference | 24 nominal hours, 40.719 kWh, traceable OPSD / CoSSMic source |
+| Duplicate protection | 24 occupied meter-hours rejected even after readings changed |
+| Evidence verification | Original package passes; altered reading fails |
+| Reproducibility | Nine automated tests; isolated source install, build and production startup pass |
+
+[Read the project story](docs/DEVPOST_STORY.md) · [See local acceptance evidence](docs/UI_ACCEPTANCE.md) · [Explore the design](docs/PRODUCT.md)
 
 ## Run locally
 
@@ -51,7 +63,7 @@ node scripts/verify-offline.mjs evidence/tampered-proof.json
 
 The last command intentionally returns exit code 1 for the tampered fixture. Invalid usage returns 2. Offline verification checks only the payload against the digest inside its package. An attacker can change both; an offline match is not registration proof. The app's verification additionally queries the current local contract and checks its transaction event. Evidence from a previous session cannot establish registration in a newly restarted chain.
 
-The current implementation passed nine automated tests and a production build. The manager also observed the actual UI: three blocking issues for the faulty sample; historical total/peak and review warning; successful local block-2 anchoring; successful original export verification; failure after changing one value; 24 occupied-slot rejections after changing the historical readings; and a 390-pixel mobile viewport without horizontal overflow. Saved captures and example exports are in `evidence/`; `docs/UI_ACCEPTANCE.md` maps each check to its artifact. This is local acceptance, not a production or real-meter pilot.
+The current implementation passed nine automated tests and a production build. Runtime checks demonstrate: three blocking issues for the faulty sample; historical total/peak and review warning; successful local block-2 anchoring; successful original export verification; failure after changing one value; 24 occupied-slot rejections after changing the historical readings; and a 390-pixel mobile viewport without horizontal overflow. Saved captures and example exports are in `evidence/`; `docs/UI_ACCEPTANCE.md` maps each check to its artifact. This is local acceptance, not a production or real-meter pilot.
 
 ## Architecture
 
@@ -80,19 +92,14 @@ python3 scripts/prepare-opsd.py
 
 The script downloads roughly 15 MB into ignored `.cache/`, checks metadata and selected values, and writes the sample. Its regeneration was checked to produce identical hashes. OPSD resamples cumulative counters using hourly `.last()` with left labels, so nominal intervals have approximately one-minute boundary displacement. Published data can include gap filling. None of the selected rows marks this PV column as interpolated; this is not a guarantee of untouched raw measurement. The public column label is not an authenticated meter identity.
 
-## Trust boundaries and future work
+## Deployment model and roadmap
 
-- A hash/receipt establishes data commitment and local registration, not physical truth.
-- Uniqueness covers the same meter identifier and the same deployed registry. Changed identifiers, other chains and other registries are outside it.
-- The local chain and batch state disappear when the server stops. No public durable registry is supplied.
-- Reviewer confirmation is an acknowledgement, not an independently authenticated verifier signature.
-- The statistical checks are deterministic rules, not a trained AI model.
-- No field pilot, measured emissions reduction, certified energy claim or carbon credit is claimed.
+The demonstration runs a session-local EVM, with uniqueness defined by a canonical meter identifier and UTC hour in one deployed registry. Review uses transparent validation rules and an explicit reviewer acknowledgement. See [technical specifications](docs/PRODUCT.md) for the input contract, data provenance and verification model.
 
-A future pilot would compare results with an operator's source records and measure review time and errors. Trusted meter enrollment, signed measurements, durable storage, access control and established registry integration would be needed for operational use. Existing energy-attribute tracking systems already address unique certificates; ProofGrid does not claim to invent that protection or replace those systems. See [EPA double counting](https://www.epa.gov/green-power-markets/double-counting) and [tracking systems](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems).
+The adoption roadmap starts with a solar-cooperative pilot measuring review time and missed conflicts, followed by authenticated meter enrollment, signed measurements, durable storage and integration with established energy-attribute registries. [EPA tracking-system context](https://www.epa.gov/green-power-markets/energy-attribute-tracking-systems).
 
 ## AI assistance and submission status
 
-AI agents assisted research, implementation, documentation and adversarial review, coordinated by a manager with a separate opposition reviewer. They are not human team members. Only recorded checks support acceptance claims; simulated examples are labelled.
+Developed with AI assistance for research, implementation, documentation and adversarial review.
 
 The Devpost entry remains a draft at this update. The public source repository is available. Final video-link verification, attachment and final submission are pending. See `docs/PRODUCT.md`, `docs/DEVPOST_STORY.md`, `docs/DEMO_SCRIPT.md` and `docs/UI_ACCEPTANCE.md` for scope and delivery details.

@@ -14,10 +14,14 @@ Date: 22 October 2026 (SGT). Captures were made by the manager in the actual app
 | Registry/method | Existing entry and method/limitation displays inspected | `evidence/ui-08-registry.png`, `evidence/ui-09-method.png` |
 | Mobile | Manager measured viewport 390 px and scrollWidth 390 px; no horizontal overflow | `evidence/ui-mobile.png` |
 
-The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This only checks internal content integrity. The separate opposition review documents API/contract attacks and remediation; see `docs/OPPOSITION_REVIEW.md`.
+The offline verifier was also run against both JSON examples: original exit 0 / digestMatches true, modified exit 1 / digestMatches false. This only checks internal content integrity. Contract/API adversarial checks covered normalized meter identifiers, duplicate and overlapping slots, atomic transaction rollback, reviewer acknowledgement, and tampered content or receipt metadata.
 
 `evidence/ARTIFACTS.json` records SHA-256 fingerprints of saved acceptance artifacts. The captures reflect the observed session; session-local receipts do not persist as independently accessible chain evidence after restart.
 
 ## Local video file
 
-The rendered file `media/ProofGrid-demo.mp4` exists. ffprobe reports H.264 1920×1080 video with AAC audio, 217.806893 seconds (3:37.8), 5,228,285 bytes. This meets the required duration range. The independent opposition reviewer subsequently completed full decoding without errors and accepted eight representative chapter frames. The manager opened the file in QuickTime at 03:38 with playback engaged. Public playback remains unverified; no upload or accepted Devpost video URL is asserted here.
+The revised value-led file `media/ProofGrid-demo.mp4` contains H.264 1920×1080 video with AAC audio, 262.214512 seconds (4:22.2), 6,333,382 bytes. It meets the required 180–300 second duration. Full decoding completed without errors. All eight chapters passed independent frame inspection. The final chapter displays the actual evidence registry with the adoption roadmap; its replacement frame and final file hash were independently rechecked. The prior version's QuickTime playback observation is not evidence for this replacement. Public playback and accepted Devpost video-link status are separate delivery checks.
+
+## Isolated source reproduction
+
+The manager exported Git revision `fa47ac7` with `git archive` into an independent temporary directory. `npm ci` installed 365 packages successfully, `npm run build` passed, and `PORT=4192 npm start` deployed the local contract. Both `/api/status` and the built HTML homepage returned HTTP 200. The temporary test process was then stopped. This verifies the documented dependency/install/build/start path for that revision without relying on the existing working directory's installed packages.

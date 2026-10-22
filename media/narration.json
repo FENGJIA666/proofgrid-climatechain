@@ -1,42 +1,42 @@
 [
   {
     "id": "01",
-    "title": "The problem",
-    "text": "A solar project can submit two plausible reports that cover the same meter and hour. Counting both would overstate the energy represented by those records. ProofGrid makes that conflict visible before evidence moves into a formal accounting process. It is a small, reproducible review prototype for the Renewable Energy and Energy Trading track, not a certificate issuer."
+    "title": "One hour. One record.",
+    "text": "Clean energy deserves clear evidence. When two plausible solar reports cover the same meter and hour, a spreadsheet can count both. ProofGrid catches that conflict before the records enter renewable energy accounting. Built for small solar operators and community energy reviewers, it connects data quality, duplicate protection, and verifiable evidence in one workflow. This is our entry for the Renewable Energy and Energy Trading track."
   },
   {
     "id": "02",
-    "title": "Inspect the evidence",
-    "text": "The workspace starts with a meter label, a capacity assumption, and an hourly CSV. Each row contains a UTC timestamp and interval energy in kilowatt hours. We can use labelled synthetic examples or a processed historical reference. The interface exposes the candidate total and review issues, so a plausible number alone never stands in for checked evidence."
+    "title": "Review in one workspace",
+    "text": "Start with a meter identifier, a supplied capacity bound, and a simple hourly CSV. Every row represents one UTC hour and its energy in kilowatt hours. The workspace brings the generation profile, candidate total, raw readings, and quality findings together. Reviewers can investigate a suspicious value without switching between spreadsheets and technical logs. Synthetic examples make onboarding easy, while a historical solar reference demonstrates the same workflow with published data."
   },
   {
     "id": "03",
-    "title": "Block faulty submissions",
-    "text": "Here, the deliberately faulty sample contains a reading above the supplied capacity and a repeated hour. ProofGrid explains these problems and blocks the entire batch from anchoring. It does not quietly discard inconvenient rows and approve the remainder. These checks are deterministic rules. A separate peak comparison can prompt human review, but it is not a trained artificial intelligence model."
+    "title": "Catch problems early",
+    "text": "Watch what happens with a faulty report. One reading exceeds the supplied capacity, and another repeats an hour. ProofGrid identifies the exact problems and blocks the batch. Clear explanations give the reviewer an actionable correction path. The validation also checks formatting, continuity, and nonnegative energy values. An interpretable peak comparison highlights readings for additional attention, keeping automated checks transparent and human review focused."
   },
   {
     "id": "04",
-    "title": "Use a traceable historical reference",
-    "text": "This reference comes from Open Power System Data and the CoSSMic project. Differences between published cumulative counters produce twenty four nominal hourly values, totaling forty point seven one nine kilowatt hours. These are processed historical measurements, with possible source interpolation and approximate hourly boundaries. The ten kilowatt capacity is our explicit demonstration assumption, not a verified installation rating."
+    "title": "Trace the data source",
+    "text": "Now load our historical reference from Open Power System Data and CoSSMic. Twenty four nominal hourly values total forty point seven one nine kilowatt hours. The repository includes the selected cumulative counters, transformation script, attribution, and file hashes, making this example reproducible. The screen identifies the processed historical source, approximate hourly boundaries, and assumed ten kilowatt capacity, so reviewers can assess the evidence in context."
   },
   {
     "id": "05",
-    "title": "Review and anchor",
-    "text": "After inspecting the source and issues, the reviewer explicitly confirms the batch. ProofGrid submits a real transaction to its local Ethereum Virtual Machine. The contract records an evidence commitment and reserves the meter hour slots. The receipt demonstrates execution in this session. It does not authenticate a physical meter, establish renewable origin, or make this local network a public registry."
+    "title": "Make review traceable",
+    "text": "After reviewing the profile and any warnings, the reviewer confirms the batch. ProofGrid executes a real transaction on a local Ethereum Virtual Machine. Our Solidity contract records the evidence digest and reserves the meter hour slots atomically. The resulting receipt connects the reviewed dataset to a specific transaction and block. A database can also check local uniqueness. Here, the contract makes both the registration rule and its receipt inspectable, demonstrating a mechanism for a future shared registry."
   },
   {
     "id": "06",
-    "title": "Reject a repeated claim",
-    "text": "Now we try to register the same meter hours again. The existing slots cause rejection, even if a repeated claim supplies different energy values. This protects a specific boundary: the same meter identifier in the same deployed contract. A renamed meter or a different registry is outside that protection. Trusted identity enrollment and registry integration remain future work."
+    "title": "Stop repeat registration",
+    "text": "Next, we change the supplied readings and try the same twenty four meter hours again. All twenty four occupied slots are detected, and registration is blocked. Changing the file does not create fresh capacity to claim those hours in this registry. The contract also enforces this boundary: our automated test sends an overlapping transaction, confirms that it reverts, and confirms that no partial registration remains."
   },
   {
     "id": "07",
-    "title": "Check the exported evidence",
-    "text": "The exported package lets us check the recorded payload again. Verification compares its content hash with the commitment and checks the transaction against the current local contract. Changing a reading causes verification to fail. An offline matching hash alone would establish only internal consistency. The local receipt adds registration evidence, but neither check proves that the original measurements are physically true."
+    "title": "Evidence that checks out",
+    "text": "Export the accepted evidence as a portable JSON package. The original passes content and transaction verification. Now alter a reading: the content check fails. ProofGrid combines a recomputed digest with registry identity, on-chain registration, and the successful receipt event. Reviewers get a clear result and can see which check failed. A separate command-line verifier also makes the content-integrity check reproducible outside the interface."
   },
   {
     "id": "08",
-    "title": "A practical next step",
-    "text": "ProofGrid brings data checks, a scoped duplicate guard, and evidence verification into one inspectable workflow. A future pilot could measure review time and errors against an operator\u2019s source records. We have not conducted that pilot or measured emissions savings. The chain resets with the server session. Our contribution is a reproducible pre review tool that could support, rather than replace, established renewable energy accounting systems."
+    "title": "Adoption roadmap",
+    "text": "ProofGrid turns scattered renewable energy records into an inspectable review trail. Nine automated tests and the complete local workflow demonstrate the core. The next step is an operator pilot measuring review time and error detection, followed by trusted meter enrollment and durable registry integration. Built around a session-local EVM, the prototype makes the complete evidence-review workflow easy to reproduce. Open code, traceable data, and practical checks provide a concrete foundation for that next step."
   }
 ]

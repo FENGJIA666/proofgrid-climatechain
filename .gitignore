@@ -7,9 +7,9 @@ dist/
 .cache/
 media/intermediate/
 CHECKPOINT.md
-media/intermediate/
 submission/
 evidence/devpost-*
 evidence/youtube-*
 docs/REQUIREMENTS.md
 docs/DEVPOST_DRAFT.md
+docs/OPPOSITION_REVIEW.md

@@ -63,8 +63,23 @@
     },
     {
       "file": "evidence/video-frame-112.png",
-      "sha256": "3cfad8e5a2805b5a24ef9918fbaebc51570d38029c9d84467a71ff14fd8714d0",
-      "bytes": 317522
+      "sha256": "e35c1ec81ef3933acf306f5a651813056b0ffbb990445e426a4e0b1e48ce153c",
+      "bytes": 446938
+    },
+    {
+      "file": "media/ProofGrid-demo.mp4",
+      "sha256": "adc72aa5922e62adb44ab874981e6b8d32aecb7a30a19af534fd318b8da4181f",
+      "bytes": 6333382
+    },
+    {
+      "file": "media/ProofGrid-demo.srt",
+      "sha256": "ecced30e02dd25ae967031c2c4dfed9bde46a828157fcb97aada91cac5ed687c",
+      "bytes": 5162
+    },
+    {
+      "file": "media/narration.json",
+      "sha256": "64255ead806b636f5351f5f84fdec1084a2720df0698b7bcbf373b31686882d0",
+      "bytes": 4399
     }
   ]
 }
