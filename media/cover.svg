@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+<rect width="1500" height="1000" fill="#0c1d25"/>
+<defs><pattern id="g" width="70" height="70" patternUnits="userSpaceOnUse"><path d="M70 0H0V70" fill="none" stroke="#25404a" stroke-width="1"/></pattern><linearGradient id="a"><stop stop-color="#c6f267"/><stop offset="1" stop-color="#76d6b0"/></linearGradient></defs>
+<rect width="1500" height="1000" fill="url(#g)" opacity=".5"/>
+<rect x="90" y="90" width="64" height="64" rx="18" fill="#c6f267"/><path d="M110 124l12 12 21-28" fill="none" stroke="#0c1d25" stroke-width="7"/>
+<text x="178" y="135" fill="#e8f1ef" font-family="Arial,sans-serif" font-size="36" font-weight="700">PROOFGRID</text>
+<text x="90" y="310" fill="#e8f1ef" font-family="Arial,sans-serif" font-size="88" font-weight="700">One solar hour.</text>
+<text x="90" y="420" fill="#c6f267" font-family="Arial,sans-serif" font-size="88" font-weight="700">One traceable record.</text>
+<text x="94" y="506" fill="#abc2c9" font-family="Arial,sans-serif" font-size="30">Inspect generation. Catch overlaps. Verify the evidence.</text>
+<g font-family="Arial,sans-serif">
+<rect x="90" y="630" width="370" height="190" rx="24" fill="#16303a" stroke="#36515b"/>
+<text x="120" y="681" fill="#8dabb5" font-size="20">01 / REVIEW</text><text x="120" y="733" fill="#edf4ef" font-size="31">Solar meter data</text><text x="120" y="778" fill="#abc2c9" font-size="22">Explainable quality checks</text>
+<path d="M478 725h42m-12-10 12 10-12 10" stroke="#c6f267" stroke-width="3" fill="none"/>
+<rect x="550" y="630" width="370" height="190" rx="24" fill="#16303a" stroke="#36515b"/>
+<text x="580" y="681" fill="#8dabb5" font-size="20">02 / REGISTER</text><text x="580" y="733" fill="#edf4ef" font-size="31">Local EVM contract</text><text x="580" y="778" fill="#abc2c9" font-size="22">Unique meter-hour claims</text>
+<path d="M938 725h42m-12-10 12 10-12 10" stroke="#c6f267" stroke-width="3" fill="none"/>
+<rect x="1010" y="630" width="400" height="190" rx="24" fill="#c6f267"/>
+<text x="1040" y="681" fill="#46652b" font-size="20">03 / VERIFY</text><text x="1040" y="733" fill="#10251e" font-size="31">Portable evidence</text><text x="1040" y="778" fill="#35502f" font-size="22">Tampering becomes visible</text>
+<text x="90" y="920" fill="#8dabb5" font-size="22">IEEE ClimateChain 2026 · Renewable Energy &amp; Energy Trading</text>
+<text x="90" y="956" fill="#6e8c96" font-size="18">Research prototype · No formal energy certificates or carbon credits issued</text>
+</g></svg>

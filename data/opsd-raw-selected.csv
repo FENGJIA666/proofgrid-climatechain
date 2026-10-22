@@ -1,0 +1,26 @@
+utc_timestamp,DE_KN_residential1_pv,interpolated
+2016-05-31T23:00:00Z,9934.116,DE_KN_residential3_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_dishwasher | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T00:00:00Z,9934.116,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T01:00:00Z,9934.116,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T02:00:00Z,9934.116,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T03:00:00Z,9934.116,DE_KN_residential3_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_dishwasher | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T04:00:00Z,9934.153,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential3_dishwasher | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T05:00:00Z,9934.423,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T06:00:00Z,9935.020,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T07:00:00Z,9936.366,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T08:00:00Z,9939.067,DE_KN_residential3_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_dishwasher | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T09:00:00Z,9942.397,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T10:00:00Z,9950.378,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T11:00:00Z,9958.176,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential4_grid_import | DE_KN_residential4_grid_export | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T12:00:00Z,9964.752,DE_KN_residential4_grid_import | DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential4_grid_export | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T13:00:00Z,9969.163,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T14:00:00Z,9972.215,DE_KN_residential1_freezer | DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T15:00:00Z,9973.446,DE_KN_residential1_freezer | DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T16:00:00Z,9974.367,DE_KN_residential1_freezer | DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential4_grid_export | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T17:00:00Z,9974.813,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential3_dishwasher | DE_KN_residential4_grid_export | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine
+2016-06-01T18:00:00Z,9974.835,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential3_dishwasher | DE_KN_residential5_grid_import | DE_KN_residential4_ev | DE_KN_residential5_washing_machine
+2016-06-01T19:00:00Z,9974.835,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential4_ev | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T20:00:00Z,9974.835,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T21:00:00Z,9974.835,DE_KN_residential5_refrigerator | DE_KN_residential5_washing_machine | DE_KN_residential5_grid_import | DE_KN_residential5_dishwasher
+2016-06-01T22:00:00Z,9974.835,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential3_dishwasher | DE_KN_residential4_grid_export | DE_KN_residential4_grid_import | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump
+2016-06-01T23:00:00Z,9974.835,DE_KN_residential5_dishwasher | DE_KN_residential5_refrigerator | DE_KN_residential5_grid_import | DE_KN_residential5_washing_machine | DE_KN_residential2_circulation_pump

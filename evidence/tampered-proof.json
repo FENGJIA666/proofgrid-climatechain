@@ -1,0 +1,125 @@
+{
+  "payload": {
+    "schema": "proofgrid-evidence-v1",
+    "meter": "OPSD-RESIDENTIAL1-PV",
+    "capacityKw": 10,
+    "intervalMinutes": 60,
+    "timezone": "UTC",
+    "source": "user-supplied, unverified",
+    "readings": [
+      {
+        "timestamp": "2016-06-01T00:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T01:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T02:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T03:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T04:00:00Z",
+        "kwh": 0.037
+      },
+      {
+        "timestamp": "2016-06-01T05:00:00Z",
+        "kwh": 0.27
+      },
+      {
+        "timestamp": "2016-06-01T06:00:00Z",
+        "kwh": 0.597
+      },
+      {
+        "timestamp": "2016-06-01T07:00:00Z",
+        "kwh": 1.346
+      },
+      {
+        "timestamp": "2016-06-01T08:00:00Z",
+        "kwh": 2.701
+      },
+      {
+        "timestamp": "2016-06-01T09:00:00Z",
+        "kwh": 3.33
+      },
+      {
+        "timestamp": "2016-06-01T10:00:00Z",
+        "kwh": 7.981
+      },
+      {
+        "timestamp": "2016-06-01T11:00:00Z",
+        "kwh": 7.798
+      },
+      {
+        "timestamp": "2016-06-01T12:00:00Z",
+        "kwh": 7.576
+      },
+      {
+        "timestamp": "2016-06-01T13:00:00Z",
+        "kwh": 4.411
+      },
+      {
+        "timestamp": "2016-06-01T14:00:00Z",
+        "kwh": 3.052
+      },
+      {
+        "timestamp": "2016-06-01T15:00:00Z",
+        "kwh": 1.231
+      },
+      {
+        "timestamp": "2016-06-01T16:00:00Z",
+        "kwh": 0.921
+      },
+      {
+        "timestamp": "2016-06-01T17:00:00Z",
+        "kwh": 0.446
+      },
+      {
+        "timestamp": "2016-06-01T18:00:00Z",
+        "kwh": 0.022
+      },
+      {
+        "timestamp": "2016-06-01T19:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T20:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T21:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T22:00:00Z",
+        "kwh": 0
+      },
+      {
+        "timestamp": "2016-06-01T23:00:00Z",
+        "kwh": 0
+      }
+    ],
+    "totalWh": 40719,
+    "method": "hourly-capacity-and-continuity-v1"
+  },
+  "anchor": {
+    "digest": "0x3261feb9262770c5167a9ee38ea9c0ef561b79bbe7fed8ed16a023f6963ec2d5",
+    "transactionHash": "0xa707649cc3fb9ebba7e831ad40995b83065b9066b724ab41c044bf07686c1205",
+    "blockNumber": 2,
+    "contract": "0xEdB14FB2AAD79079baC1AF7949816938E6DAf18e",
+    "chainId": 1337,
+    "network": "local-ephemeral",
+    "issuer": "0x6D2589a83Ece4d88Bc126EB31Ee875647a7B11B3"
+  },
+  "limitations": [
+    "Synthetic samples are not measured generation.",
+    "Anchoring proves registration and integrity, not physical truth.",
+    "Uniqueness is only for this registry and canonical meter identifier.",
+    "Local chain resets when the server restarts. No formal REC or carbon credit is issued."
+  ]
+}

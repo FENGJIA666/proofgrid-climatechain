@@ -1,0 +1,70 @@
+{
+  "scope": "Local UI acceptance captures and exported examples; not external submission evidence",
+  "artifacts": [
+    {
+      "file": "evidence/opsd-proof.json",
+      "sha256": "bf815e9ceb0da14b7b246ad4f51c44febac0ff5959eab31427cfa0223c065675",
+      "bytes": 2976
+    },
+    {
+      "file": "evidence/tampered-proof.json",
+      "sha256": "e6237ea08709fd518ddd1a228ad8859cc2e8bf7c6803eabb76013a729a5d9534",
+      "bytes": 2976
+    },
+    {
+      "file": "evidence/ui-01-overview.png",
+      "sha256": "09fa32c5ba97931ecc9dd27b0d7df30d39d2873a45e1285b024e38d75d2d1d5f",
+      "bytes": 79597
+    },
+    {
+      "file": "evidence/ui-02-flagged.png",
+      "sha256": "b0fb2a00c7a9d42089a6849edbc1f42b0bc4c43ff22aa94dc1f4efb4fb5bbe31",
+      "bytes": 89967
+    },
+    {
+      "file": "evidence/ui-03-historical.png",
+      "sha256": "7f33e7eb918ff127eec1b0f62a7e217e714a6067522a92e875a5005de1611c97",
+      "bytes": 97811
+    },
+    {
+      "file": "evidence/ui-04-anchored.png",
+      "sha256": "0b2fcb2fa4da99c613137b39badabab386fdc56b5dd243dbef230f0e3d161cd6",
+      "bytes": 89665
+    },
+    {
+      "file": "evidence/ui-05-verified.png",
+      "sha256": "1d88404978dedaacb1f49438ccfa5ccbe7c0ba9edcf6e37fe4be0d722a7f2141",
+      "bytes": 69469
+    },
+    {
+      "file": "evidence/ui-06-tampered.png",
+      "sha256": "2142e7e647481540dc104a569049e7cff75605b943c244c77bcfd4e87174c3a2",
+      "bytes": 69522
+    },
+    {
+      "file": "evidence/ui-07-duplicate.png",
+      "sha256": "f415a39c20b63ecdc7cd07cfe369b46a7259d8477d8520de1ee2323aedac5336",
+      "bytes": 94782
+    },
+    {
+      "file": "evidence/ui-08-registry.png",
+      "sha256": "65adee3c9761d0e24d1e4c2a0217b990a82e401d3c95514cde192684771fc214",
+      "bytes": 50796
+    },
+    {
+      "file": "evidence/ui-09-method.png",
+      "sha256": "1b407d49bf3cc386dc4e753d2cafa9360516c9a498927dced9bca5dae7641656",
+      "bytes": 91549
+    },
+    {
+      "file": "evidence/ui-mobile.png",
+      "sha256": "a95fb065a52c876fe233b9bd5494f4eb81aa291d0398f8afb620e36690682c44",
+      "bytes": 58316
+    },
+    {
+      "file": "evidence/video-frame-112.png",
+      "sha256": "3cfad8e5a2805b5a24ef9918fbaebc51570d38029c9d84467a71ff14fd8714d0",
+      "bytes": 317522
+    }
+  ]
+}

@@ -6,3 +6,8 @@ dist/
 .DS_Store
 .cache/
 media/intermediate/
+CHECKPOINT.md
+media/intermediate/
+submission/
+evidence/devpost-*
+evidence/youtube-*
